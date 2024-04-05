@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 body{
-  font-family: "Poppins", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
+@import 'header';
 @import 'bannerSection';
 @import 'popularSection';
 @import 'dailyBest';
+@import 'dealOfDay';
+@import 'featcate';

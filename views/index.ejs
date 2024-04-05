@@ -5,8 +5,76 @@
 </head>
 <body>
     <!--https://nest-frontend-v6.netlify.app/-->
+    <%-include('featcate')%>
     <%-include('banner')%>
     <%-include('popular')%>
+    <%-include('dailybest')%>
+    <%-include('dealofday')%>
 </body>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 4,
+            spaceBetween: 5,
+            navigation: {
+                nextEl: ".swiper-button-next-new",
+                prevEl: ".swiper-button-prev-new",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            loop: true,
+            autoplay: {
+                delay: 4000, 
+                disableOnInteraction: false,
+            },
+        });
+    </script>
+    <script>
+        var swiper2 = new Swiper(".mySwiper2", {
+            slidesPerView: 2,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: ".swiper-button-next-new",
+                prevEl: ".swiper-button-prev-new",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                dynamicBullets: true,
+                // clickable: true,
+            },
+            loop: true,
+            autoplay: {
+                delay: 4000, 
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                380: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                },
+                576: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                640: {
+                    slidesPerView: 5,
+                    spaceBetween: 5,
+                },
+                768: {
+                    slidesPerView: 5,
+                    spaceBetween: 10,
+                },
+                1024: {
+                    slidesPerView: 7,
+                    spaceBetween: 10,
+                },
+                1280: {
+                    slidesPerView: 9,
+                    spaceBetween: 10,
+                },
+            },
+        });
+    </script>
 </html>

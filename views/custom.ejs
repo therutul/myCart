@@ -5,342 +5,165 @@
 </head>
 <body>
     <!--https://nest-frontend-v6.netlify.app/-->
-    <section class="container mx-auto" id="dailyBest">
-        <div class="title-bar flex justify-between items-center">
-            <h1 class="text-4xl font-medium">
-                Daily Best Sells
-            </h1>
-            <ul class="flex gap-5 font-medium text-sm">
-                <li>
-                    <a href="" class="active">Featured</a>
-                </li>
-                <li>
-                    <a href="">Popular</a>
-                </li>
-                <li>
-                    <a href="">New added</a>
-                </li>
-            </ul>
+    <header>
+        <div class="header-top border-b py-1">
+            <div class="container mx-auto">
+                <ul class="flex items-center">
+                    <li>
+                        <a href="" class="text-xs text-slate-600">About Us</a>
+                    </li>
+                    <li>
+                        <span class="px-3 text-sm text-slate-600">|</span>
+                    </li>
+                    <li>
+                        <a href="" class="text-xs text-slate-600">About Us</a>
+                    </li>
+                    <li>
+                        <span class="px-3 text-sm text-slate-600">|</span>
+                    </li>
+                    <li>
+                        <a href="" class="text-xs text-slate-600">About Us</a>
+                    </li>
+                    <li>
+                        <span class="px-3 text-sm text-slate-600">|</span>
+                    </li>
+                    <li>
+                        <a href="" class="text-xs text-slate-600">About Us</a>
+                    </li>
+                    <li class="flex-1 text-center">
+                        <span class="text-xs font-semibold text-slate-600">Trendy 25silver jewelry, save up 35% off today</span>
+                    </li>
+                    <li>
+                        <span class="text-xs text-slate-600">Need help? Call Us: <strong>+ 1800 900</strong> </span>
+                    </li>
+                    <li>
+                        <span class="px-3 text-sm text-slate-600">|</span>
+                    </li>
+                    <li>
+                        <a href="" class="text-xs text-slate-600">English <i class='bx bxs-chevron-down align-middle' ></i></a>
+                    </li>
+                    <li>
+                        <span class="px-3 text-sm text-slate-600">|</span>
+                    </li>
+                    <li>
+                        <a href="" class="text-xs text-slate-600">USD <i class='bx bxs-chevron-down align-middle' ></i></a>
+                    </li>
+                </ul>
+            </div>
         </div>
-
-
-        <div class="product-slider mt-8 flex gap-2">
-            <div class="w-1/4">
-                <div class="banner relative rounded-lg overflow-hidden">
-                    <div class="banner-image">
-                        <img src="img/banner-4.png" alt="">
+        <div class="header-middle border-b py-5">
+            <div class="container mx-auto flex items-center">
+                <div class="logo me-5 xl:w-1/4">
+                    <img src="img/logo.svg" alt="" class="w-48">
+                </div>
+                <div class="search-bar w-1/3 rounded-md overflow-hidden">
+                    <form action="" method="POST" class="flex gap-3 px-3">
+                        <input type="text" class="py-2 w-full text-sm" placeholder="Search for items...">
+                        <button class="text-xl"><i class='bx bx-search text-slate-600' ></i></button>
+                    </form>
+                </div>
+                <ul class="flex gap-5 justify-center items-center ms-auto">
+                    <li>
+                        <a href="" class="text-slate-600 flex gap-2 items-center relative">
+                            <span class="float-counter">12</span>
+                            <i class='text-xl bx bx-notification align-middle' ></i>
+                            <p>Compare</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="text-slate-600 flex gap-2 items-center relative">
+                            <span class="float-counter">12</span>
+                            <i class='text-xl bx bx-notification align-middle' ></i>
+                            <p>Compare</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="text-slate-600 flex gap-2 items-center relative">
+                            <span class="float-counter">12</span>
+                            <i class='text-xl bx bx-notification align-middle' ></i>
+                            <p>Compare</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="text-slate-600 flex gap-2 items-center relative">
+                            <i class='text-xl bx bx-notification align-middle' ></i>
+                            <p>Compare</p>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="header-bottom border-b">
+            <div class="container mx-auto flex py-3">
+                <ul class="flex items-center">
+                    <li>
+                        <button class="font-semibold rounded px-3 py-2"><i class='bx bxs-category-alt' ></i> Browse all Categories <i class='bx bxs-chevron-down align-middle' ></i></button>
+                    </li>
+                </ul>
+                <ul class="flex items-center ms-4 xl:ms-9 gap-4 xl:gap-8">
+                    <li class="relative">
+                        <a href="" class=" font-semibold whitespace-nowrap">Home <i class='bx bxs-chevron-down align-middle' ></i></a>
+                        <div class="dropdown absolute -left-5 w-40 ps-5 py-3 flex flex-col rounded-md bg-white">
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="" class="font-semibold whitespace-nowrap">About</a>
+                    </li>
+                    <li class="relative">
+                        <a href="" class="font-semibold whitespace-nowrap">Popular <i class='bx bxs-chevron-down align-middle' ></i></a>
+                        <div class="dropdown absolute -left-5 w-40 ps-5 py-3 flex flex-col rounded-md bg-white">
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                        </div>
+                    </li>
+                    <li class="relative">
+                        <a href="" class="font-semibold whitespace-nowrap">Latest <i class='bx bxs-chevron-down align-middle' ></i></a>
+                        <div class="dropdown absolute -left-5 w-40 ps-5 py-3 flex flex-col rounded-md bg-white">
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                        </div>
+                    </li>
+                    <li class="relative">
+                        <a href="" class="font-semibold whitespace-nowrap">Deals <i class='bx bxs-chevron-down align-middle' ></i></a>
+                        <div class="dropdown absolute -left-5 w-40 ps-5 py-3 flex flex-col rounded-md bg-white">
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                            <a href="">Home 1</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="" class="font-semibold whitespace-nowrap">Contact </a>
+                    </li>
+                    <li>
+                        <a href="" class="font-semibold whitespace-nowrap">Tracking</a>
+                    </li>
+                </ul>
+                <div class="support-call flex items-center flex-1 justify-end">
+                    <div class="icon text-4xl px-3 text-slate-600">
+                        <i class='bx bx-support align-middle' ></i>
                     </div>
-                    <div class="banner-misc absolute top-10 left-10">
-                        <h1 class="text-2xl font-semibold">Everyday Fresh &<br>
-                        Clean with Our<br>Products</h1>
-                    </div>
-                    <div class="banner-button absolute bottom-10 left-10">
-                        <button class="px-3 py-1 rounded"><a href="123">Shop Now <span><i class='bx bx-right-arrow-alt align-middle text-2xl'></i></span></a></button>
+                    <div class="details flex flex-col">
+                        <h1 class="font-bold text-xl">+1900-888</h1>
+                        <span class="text-slate-600 font-semibold text-xs whitespace-nowrap">24/7 Customer Support</span>
                     </div>
                 </div>
             </div>
-            <div class="w-3/4">
-                <div class="product-grid px-4">
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="product p-2 border flex gap-1 flex-col relative justify-between">
-                                    <div class="product-tag absolute top-0 left-0 px-2 py-1 rounded-e-full">
-                                        <span class="text-xs font-semibold">Sale</span>
-                                    </div>
-                                    <div class="product-image">
-                                        <img src="img/product-1-1.jpg" alt="">
-                                    </div>
-                                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
-                                    <div class="rating-box flex gap-2">
-                                        <div class="stars">
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                        </div>
-                                        <div class="rating">
-                                            <span>(4.0)</span>
-                                        </div>
-                                    </div>
-                                    <span>By <a href="">NestFood</a></span>
-                                    <div class="price-box justify-between flex gap-2 items-center">
-                                        <h3 class="font-semibold text-lg">$28.85</h3>
-                                        <h4 class="font-semibold line-through">$32.8</h4>
-                                    </div>
-                                    <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product p-2 border flex gap-1 flex-col relative justify-between">
-                                    <div class="product-tag absolute top-0 left-0 px-2 py-1 rounded-e-full">
-                                        <span class="text-xs font-semibold">Sale</span>
-                                    </div>
-                                    <div class="product-image">
-                                        <img src="img/product-1-1.jpg" alt="">
-                                    </div>
-                                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
-                                    <div class="rating-box flex gap-2">
-                                        <div class="stars">
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                        </div>
-                                        <div class="rating">
-                                            <span>(4.0)</span>
-                                        </div>
-                                    </div>
-                                    <span>By <a href="">NestFood</a></span>
-                                    <div class="price-box justify-between flex gap-2 items-center">
-                                        <h3 class="font-semibold text-lg">$28.85</h3>
-                                        <h4 class="font-semibold line-through">$32.8</h4>
-                                    </div>
-                                    <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product p-2 border flex gap-1 flex-col relative justify-between">
-                                    <div class="product-tag absolute top-0 left-0 px-2 py-1 rounded-e-full">
-                                        <span class="text-xs font-semibold">Sale</span>
-                                    </div>
-                                    <div class="product-image">
-                                        <img src="img/product-1-1.jpg" alt="">
-                                    </div>
-                                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
-                                    <div class="rating-box flex gap-2">
-                                        <div class="stars">
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                        </div>
-                                        <div class="rating">
-                                            <span>(4.0)</span>
-                                        </div>
-                                    </div>
-                                    <span>By <a href="">NestFood</a></span>
-                                    <div class="price-box justify-between flex gap-2 items-center">
-                                        <h3 class="font-semibold text-lg">$28.85</h3>
-                                        <h4 class="font-semibold line-through">$32.8</h4>
-                                    </div>
-                                    <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product p-2 border flex gap-1 flex-col relative justify-between">
-                                    <div class="product-tag absolute top-0 left-0 px-2 py-1 rounded-e-full">
-                                        <span class="text-xs font-semibold">Sale</span>
-                                    </div>
-                                    <div class="product-image">
-                                        <img src="img/product-1-1.jpg" alt="">
-                                    </div>
-                                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
-                                    <div class="rating-box flex gap-2">
-                                        <div class="stars">
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                        </div>
-                                        <div class="rating">
-                                            <span>(4.0)</span>
-                                        </div>
-                                    </div>
-                                    <span>By <a href="">NestFood</a></span>
-                                    <div class="price-box justify-between flex gap-2 items-center">
-                                        <h3 class="font-semibold text-lg">$28.85</h3>
-                                        <h4 class="font-semibold line-through">$32.8</h4>
-                                    </div>
-                                    <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product p-2 border flex gap-1 flex-col relative justify-between">
-                                    <div class="product-tag absolute top-0 left-0 px-2 py-1 rounded-e-full">
-                                        <span class="text-xs font-semibold">Sale</span>
-                                    </div>
-                                    <div class="product-image">
-                                        <img src="img/product-1-1.jpg" alt="">
-                                    </div>
-                                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
-                                    <div class="rating-box flex gap-2">
-                                        <div class="stars">
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                        </div>
-                                        <div class="rating">
-                                            <span>(4.0)</span>
-                                        </div>
-                                    </div>
-                                    <span>By <a href="">NestFood</a></span>
-                                    <div class="price-box justify-between flex gap-2 items-center">
-                                        <h3 class="font-semibold text-lg">$28.85</h3>
-                                        <h4 class="font-semibold line-through">$32.8</h4>
-                                    </div>
-                                    <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product p-2 border flex gap-1 flex-col relative justify-between">
-                                    <div class="product-tag absolute top-0 left-0 px-2 py-1 rounded-e-full">
-                                        <span class="text-xs font-semibold">Sale</span>
-                                    </div>
-                                    <div class="product-image">
-                                        <img src="img/product-1-1.jpg" alt="">
-                                    </div>
-                                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
-                                    <div class="rating-box flex gap-2">
-                                        <div class="stars">
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                        </div>
-                                        <div class="rating">
-                                            <span>(4.0)</span>
-                                        </div>
-                                    </div>
-                                    <span>By <a href="">NestFood</a></span>
-                                    <div class="price-box justify-between flex gap-2 items-center">
-                                        <h3 class="font-semibold text-lg">$28.85</h3>
-                                        <h4 class="font-semibold line-through">$32.8</h4>
-                                    </div>
-                                    <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product p-2 border flex gap-1 flex-col relative justify-between">
-                                    <div class="product-tag absolute top-0 left-0 px-2 py-1 rounded-e-full">
-                                        <span class="text-xs font-semibold">Sale</span>
-                                    </div>
-                                    <div class="product-image">
-                                        <img src="img/product-1-1.jpg" alt="">
-                                    </div>
-                                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
-                                    <div class="rating-box flex gap-2">
-                                        <div class="stars">
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                        </div>
-                                        <div class="rating">
-                                            <span>(4.0)</span>
-                                        </div>
-                                    </div>
-                                    <span>By <a href="">NestFood</a></span>
-                                    <div class="price-box justify-between flex gap-2 items-center">
-                                        <h3 class="font-semibold text-lg">$28.85</h3>
-                                        <h4 class="font-semibold line-through">$32.8</h4>
-                                    </div>
-                                    <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product p-2 border flex gap-1 flex-col relative justify-between">
-                                    <div class="product-tag absolute top-0 left-0 px-2 py-1 rounded-e-full">
-                                        <span class="text-xs font-semibold">Sale</span>
-                                    </div>
-                                    <div class="product-image">
-                                        <img src="img/product-1-1.jpg" alt="">
-                                    </div>
-                                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
-                                    <div class="rating-box flex gap-2">
-                                        <div class="stars">
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                        </div>
-                                        <div class="rating">
-                                            <span>(4.0)</span>
-                                        </div>
-                                    </div>
-                                    <span>By <a href="">NestFood</a></span>
-                                    <div class="price-box justify-between flex gap-2 items-center">
-                                        <h3 class="font-semibold text-lg">$28.85</h3>
-                                        <h4 class="font-semibold line-through">$32.8</h4>
-                                    </div>
-                                    <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="product p-2 border flex gap-1 flex-col relative justify-between">
-                                    <div class="product-tag absolute top-0 left-0 px-2 py-1 rounded-e-full">
-                                        <span class="text-xs font-semibold">Sale</span>
-                                    </div>
-                                    <div class="product-image">
-                                        <img src="img/product-1-1.jpg" alt="">
-                                    </div>
-                                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
-                                    <div class="rating-box flex gap-2">
-                                        <div class="stars">
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                            <i class='bx bxs-star' ></i>
-                                        </div>
-                                        <div class="rating">
-                                            <span>(4.0)</span>
-                                        </div>
-                                    </div>
-                                    <span>By <a href="">NestFood</a></span>
-                                    <div class="price-box justify-between flex gap-2 items-center">
-                                        <h3 class="font-semibold text-lg">$28.85</h3>
-                                        <h4 class="font-semibold line-through">$32.8</h4>
-                                    </div>
-                                    <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-button-next-new absolute text-green-500 top-1/3 text-3xl right-0 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                            <i class='bx bxs-chevron-right-circle'></i>
-                        </div>
-                        <div class="swiper-button-prev-new absolute text-green-500 top-1/3 text-3xl left-0 transform translate-x-1/2 -translate-y-1/2 z-10">
-                            <i class='bx bxs-chevron-left-circle'></i>
-                        </div>
-                    </div>
-                    
-                    
-                </div>
-            </div>
         </div>
-    </section>
+    </header>
 </body>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 4,
-            spaceBetween: 5,
-            navigation: {
-                nextEl: ".swiper-button-next-new",
-                prevEl: ".swiper-button-prev-new",
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-        });
-    </script>
+
 </html>

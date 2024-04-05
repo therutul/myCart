@@ -3,7 +3,7 @@
         color: #35374B;
     }
     .active{
-        color: #32ac38;
+        color: #3BB77E;
         position: relative;
             &::before{
                 content: "";
@@ -55,7 +55,7 @@
                 }
             }
             button {
-                background-color: #32ac38;
+                background-color: #3BB77E;
                 color: white;
                 transition: 0.2s;
             
@@ -101,23 +101,23 @@
             .product{
                 height: 100%;
                 .product-tag{
-                    background-color: #32ac38;
+                    background-color: #3BB77E;
                     color: white;
                 }
                 span{
                     a{
-                        color: #32ac38;
+                        color: #3BB77E;
                     }
                 }
                 a{
                     transition: 0.2s;
                     &:hover{
-                        color: #32ac38;
+                        color: #3BB77E;
                     }
                 }
                 button{
                     background-color: #c7ffca;
-                    color: #32ac38;
+                    color: #3BB77E;
                     transition: 0.2s;
                     padding: 5px 15px;
                     font-weight: 500;
@@ -126,7 +126,7 @@
                     justify-content: center;
                     gap: 4px;
                     &:hover{
-                        background-color: #32ac38;
+                        background-color: #3BB77E;
                         color: white;
                     }
                 }
