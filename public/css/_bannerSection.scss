@@ -1,0 +1,36 @@
+#bannerSection{
+  .banner{
+    img{
+      transition: 0.2s;
+    }
+    h1{
+      transition: 0.2s;
+    }
+    &:hover{
+      img{
+        opacity: 0.8;
+      }
+      h1{
+        transform: translateY(10px);
+      }
+    }
+  }
+  h1{
+    color: #344955;
+  }
+  button{
+    background-color: #32ac38;
+    color: white;
+    transition: 0.2s;
+    span{
+      transition: 0.2s;
+    }
+    &:hover{
+      background-color: #ffbd2e;
+      color: #344955;
+      span{
+        margin-left: 8px;
+      }
+    }
+  }
+}

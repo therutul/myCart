@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+#bannerSection .banner img {
+  transition: 0.2s;
+}
+#bannerSection .banner h1 {
+  transition: 0.2s;
+}
+#bannerSection .banner:hover img {
+  opacity: 0.8;
+}
+#bannerSection .banner:hover h1 {
+  transform: translateY(10px);
+}
+#bannerSection h1 {
+  color: #344955;
+}
+#bannerSection button {
+  background-color: #32ac38;
+  color: white;
+  transition: 0.2s;
+}
+#bannerSection button span {
+  transition: 0.2s;
+}
+#bannerSection button:hover {
+  background-color: #ffbd2e;
+  color: #344955;
+}
+#bannerSection button:hover span {
+  margin-left: 8px;
+}
+
+#popularSection h1 {
+  color: #35374B;
+}
+#popularSection .active {
+  color: #32ac38;
+  position: relative;
+}
+#popularSection .active::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #91ff00;
+  bottom: -2px;
+  transition: 0.2s;
+}
+#popularSection ul li {
+  position: relative;
+}
+#popularSection ul li a {
+  color: #35374B;
+}
+#popularSection ul li::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #91ff00;
+  bottom: -2px;
+  transition: 0.2s;
+}
+#popularSection ul li:hover::before {
+  width: 100%;
+}
+#popularSection .product-grid .product .product-tag {
+  background-color: #32ac38;
+  color: white;
+}
+#popularSection .product-grid .product span a {
+  color: #32ac38;
+}
+#popularSection .product-grid .product a {
+  transition: 0.2s;
+}
+#popularSection .product-grid .product a:hover {
+  color: #32ac38;
+}
+#popularSection .product-grid .product button {
+  background-color: #c7ffca;
+  color: #32ac38;
+  transition: 0.2s;
+  padding: 5px 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+#popularSection .product-grid .product button:hover {
+  background-color: #32ac38;
+  color: white;
+}
+
+#dailyBest h1 {
+  color: #35374B;
+}
+#dailyBest .active {
+  color: #32ac38;
+  position: relative;
+}
+#dailyBest .active::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #91ff00;
+  bottom: -2px;
+  transition: 0.2s;
+}
+#dailyBest ul li {
+  position: relative;
+}
+#dailyBest ul li a {
+  color: #35374B;
+}
+#dailyBest ul li::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #91ff00;
+  bottom: -2px;
+  transition: 0.2s;
+}
+#dailyBest ul li:hover::before {
+  width: 100%;
+}
+#dailyBest .product-slider .banner img {
+  transition: 0.2s;
+}
+#dailyBest .product-slider .banner h1 {
+  transition: 0.2s;
+}
+#dailyBest .product-slider .banner:hover img {
+  opacity: 0.8;
+}
+#dailyBest .product-slider .banner:hover h1 {
+  transform: translateY(10px);
+}
+#dailyBest .product-slider .banner button {
+  background-color: #32ac38;
+  color: white;
+  transition: 0.2s;
+}
+#dailyBest .product-slider .banner button span {
+  transition: 0.2s;
+}
+#dailyBest .product-slider .banner button:hover {
+  background-color: #ffbd2e;
+  color: #344955;
+}
+#dailyBest .product-slider .banner button:hover span {
+  margin-left: 8px;
+}
+#dailyBest .product-slider h1 {
+  color: #344955;
+}
+#dailyBest .product-slider .product-grid .swiper {
+  width: 100%;
+}
+#dailyBest .product-slider .product-grid .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#dailyBest .product-slider .product-grid .swiper-slide img {
+  display: block;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#dailyBest .product-slider .product-grid .product .product-tag {
+  background-color: #32ac38;
+  color: white;
+}
+#dailyBest .product-slider .product-grid .product span a {
+  color: #32ac38;
+}
+#dailyBest .product-slider .product-grid .product a {
+  transition: 0.2s;
+}
+#dailyBest .product-slider .product-grid .product a:hover {
+  color: #32ac38;
+}
+#dailyBest .product-slider .product-grid .product button {
+  background-color: #c7ffca;
+  color: #32ac38;
+  transition: 0.2s;
+  padding: 5px 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+#dailyBest .product-slider .product-grid .product button:hover {
+  background-color: #32ac38;
+  color: white;
+}/*# sourceMappingURL=style.css.map */

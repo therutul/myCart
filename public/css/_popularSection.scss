@@ -1,0 +1,72 @@
+#popularSection{
+    h1{
+        color: #35374B;
+    }
+    .active{
+        color: #32ac38;
+        position: relative;
+            &::before{
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                background-color: #91ff00;
+                bottom: -2px;
+                transition: 0.2s;
+            }
+    }
+    ul{
+        li{
+            a{
+                color: #35374B;
+            }
+            position: relative;
+            &::before{
+                content: "";
+                position: absolute;
+                width: 0%;
+                height: 2px;
+                background-color: #91ff00;
+                bottom: -2px;
+                transition: 0.2s;
+            }
+            &:hover::before{
+                width: 100%;
+            }
+        }
+    }
+    .product-grid{
+        .product{
+            .product-tag{
+                background-color: #32ac38;
+                color: white;
+            }
+            span{
+                a{
+                    color: #32ac38;
+                }
+            }
+            a{
+                transition: 0.2s;
+                &:hover{
+                    color: #32ac38;
+                }
+            }
+            button{
+                background-color: #c7ffca;
+                color: #32ac38;
+                transition: 0.2s;
+                padding: 5px 15px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                &:hover{
+                    background-color: #32ac38;
+                    color: white;
+                }
+            }
+        }
+    }
+}

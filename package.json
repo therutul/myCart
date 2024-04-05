@@ -1,0 +1,23 @@
+{
+  "name": "myjob",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "concurrently \"nodemon -e ejs,js,css\" \"npx tailwindcss -i ./public/css/style.css -o ./public/css/main.css --watch\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "mongoose": "^8.2.4",
+    "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.9.3",
+    "tailwindcss": "^3.4.3"
+  }
+}
