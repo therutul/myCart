@@ -747,6 +747,11 @@ video {
   padding-right: 0.75rem;
 }
 
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -1011,8 +1016,13 @@ body {
   color: #344955;
 }
 
+#dailyBest .product-slider .product-grid {
+  height: 100%;
+}
+
 #dailyBest .product-slider .product-grid .swiper {
   width: 100%;
+  height: 100%;
 }
 
 #dailyBest .product-slider .product-grid .swiper-slide {
@@ -1024,8 +1034,13 @@ body {
 #dailyBest .product-slider .product-grid .swiper-slide img {
   display: block;
   width: 100%;
+  height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
+}
+
+#dailyBest .product-slider .product-grid .product {
+  height: 100%;
 }
 
 #dailyBest .product-slider .product-grid .product .product-tag {

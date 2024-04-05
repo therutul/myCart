@@ -163,8 +163,12 @@ body {
 #dailyBest .product-slider h1 {
   color: #344955;
 }
+#dailyBest .product-slider .product-grid {
+  height: 100%;
+}
 #dailyBest .product-slider .product-grid .swiper {
   width: 100%;
+  height: 100%;
 }
 #dailyBest .product-slider .product-grid .swiper-slide {
   display: flex;
@@ -174,8 +178,12 @@ body {
 #dailyBest .product-slider .product-grid .swiper-slide img {
   display: block;
   width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+#dailyBest .product-slider .product-grid .product {
+  height: 100%;
 }
 #dailyBest .product-slider .product-grid .product .product-tag {
   background-color: #32ac38;
