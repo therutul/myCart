@@ -401,4 +401,22 @@ header .header-bottom li:hover .dropdown {
 }
 #featuredCate .cate-box a:hover {
   color: #3BB77E;
+}
+
+#productPage .product-category ul li {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+#productPage .product-category ul p {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(119, 201, 163);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  color: white;
+}
+#productPage .product-category ul a {
+  color: #344955;
 }/*# sourceMappingURL=style.css.map */
