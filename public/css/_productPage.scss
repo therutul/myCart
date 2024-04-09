@@ -1,5 +1,19 @@
 #productPage{
+    .product-detail-container{
+        li{
+            a{
+                border: 2px solid rgb(119, 201, 163);
+            }
+            .active{
+                
+            }
+        }
+    }
     .product-category{
+        h1{
+            border-bottom: 2px solid rgb(119, 201, 163);
+            color: #344955;
+        }
         ul{
             
             li{
@@ -21,4 +35,52 @@
             }
         }
     }
+    .new-products{
+        h1{
+            border-bottom: 2px solid #3BB77E;
+            color: #344955;
+        }
+        ul{
+            
+            li{
+                a{
+                    color: #3BB77E;
+                }
+                span{
+                    color: #344955;
+                }
+            }
+        }
+        
+    }
+    .new-products-banner{
+            img{
+
+            }
+            .detail-box1{
+                &>span{
+                    position: absolute;
+                    top: 30%;
+                    left: 10%;
+                    color: #344955;
+                }
+                h3{
+                    color: #344955;
+                    position: absolute;
+                    top: 40%;
+                    left: 10%;
+                    transition: 0.4s;
+                    span{
+                        color: #3BB77E;
+                    }
+                }
+            }
+            &:hover{
+                .detail-box1{
+                    h3{
+                        top: 35%;
+                    }
+                }
+            }
+        }
 }
