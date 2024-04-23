@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%-include('head')-%>
+</head>
+<body>
+    <!--https://nest-frontend-v6.netlify.app/-->
+    <section class="container mx-auto flex" id="productPage">
+        <div class="flex flex-col w-3/4">
+            <div class="product-catalog flex">
+                <div class="product-gallery w-1/2">
+                    <div class="fotorama" data-nav="thumbs">
+                        <img src="img/product-1-1.jpg">
+                        <img src="img/product-2-1.jpg">
+                        <img src="img/product-3-1.jpg">
+                        <img src="img/product-4-1.jpg">
+                    </div>
+                </div>
+                <div class="product-basic w-1/2">
+                    <div class="product-label-tag text-sm font-semibold">
+                        <span>50% Off</span>
+                    </div>
+                    <div class="product-title mt-3">
+                        <h1 class="text-4xl font-semibold">Seeds of Change Organic Quinoa, Brown</h1>
+                    </div>
+                    <div class="product-review mt-5">
+                        <div class="rating-box text-xs">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <span class="ps-2">(32 Reviews)</span>
+                        </div>
+                    </div>
+                    <div class="product-price flex items-center gap-4 mt-5">
+                        <h2 class="text-5xl font-bold">$38</h2>
+                        <h3 class="text-2xl line-through font-semibold text-slate-500">$52</h3>
+                    </div>
+                    <div class="product-semi-detail mt-5">
+                        <p class="text-slate-500 font-medium">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi laudantium quod autem quas eveniet natus culpa quos minus consequuntur mollitia dolores, reprehenderit blanditiis nesciunt provident numquam quae molestias voluptate adipisci?</p>
+                    </div>
+                    <div class="size-box flex items-center mt-5 text-sm">
+                        <div class="size-title">
+                            <p class="font-semibold text-slate-500">Size/Weight:</p>
+                        </div>
+                        <ul class="flex-1 ms-5">
+                            <form action="" class="flex gap-3">
+                                <li>
+                                    <button class="active">50g</button>
+                                    <input type="hidden" value="50g">
+                                </li>
+                                <li>
+                                    <button>60g</button>
+                                    <input type="hidden" value="50g">
+                                </li>
+                                <li>
+                                    <button>80g</button>
+                                    <input type="hidden" value="50g">
+                                </li>
+                                <li>
+                                    <button>120g</button>
+                                    <input type="hidden" value="50g">
+                                </li>
+                            </form>
+                        </ul>
+                    </div>
+                    <div class="counter-and-cart mt-5 flex items-center gap-5">
+                        <div class="counter-box flex border w-20 rounded-md px-1">
+                            <div class="add-count flex justify-center items-center flex-1">
+                                <span class="text-xl font-medium">11</span>
+                            </div>
+                            <div class="up-down flex flex-col justify-between items-center">
+                                <div class="up-arrow p-0 m-0 text-xl">
+                                    <button><i class='bx bxs-up-arrow-square' ></i></button>
+                                </div>
+                                <div class="down-arrow p-0 m-0 text-xl">
+                                    <button><i class='bx bxs-down-arrow-square' ></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-to-cart h-full">
+                            <button class="h-full p-4 font-semibold rounded-md"><i class='bx bx-cart-alt' ></i> Add to cart</button>
+                        </div>
+                        <div class="add-wishlist">
+                            <button class="p-4 border rounded-md"><i class='bx bx-heart'></i></button>
+                        </div>
+                    </div>
+                    <div class="product-extra-spec mt-5">
+                        <table class="table-auto w-2/3 text-sm font-medium text-slate-500">
+                            <tr>
+                                <td class="py-1">
+                                    <label>Type: </label>
+                                    <span>Organic</span>
+                                </td>
+                                <td class="py-1">
+                                    <label>Type: </label>
+                                    <span>Organic</span>
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <td class="py-1">
+                                    <label>Type: </label>
+                                    <span>Organic</span>
+                                </td>
+                                <td class="py-1">
+                                    <label>Type: </label>
+                                    <span>Organic</span>
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <td class="py-1">
+                                    <label>Type: </label>
+                                    <span>Organic</span>
+                                </td>
+                                <td class="py-1">
+                                    <label>Type: </label>
+                                    <span>Organic</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="product-detail-container rounded-lg border mt-5 p-5">
+                <ul class="flex gap-3 mb-10">
+                    <li>
+                        <button class="rounded-full py-2 px-4 active" onclick="pDesc()" id="productDetailBox">Description</button>
+                    </li>
+                    <li>
+                        <button class="rounded-full py-2 px-4" onclick="pAddi()" id="additionalBox">Additional Info</button>
+                    </li>
+                    <li>
+                        <button class="rounded-full py-2 px-4" onclick="pRev()" id="reviewBox">Reviews</button>
+                    </li>
+                </ul>
+                <div class="product-details-tab">
+                    <p class="text-slate-500 font-medium">Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off far quetzal goodness and from for grimaced goodness unaccountably and meadowlark near unblushingly crucial scallop tightly neurotic hungrily some and dear furiously this apart.
+
+                        Spluttered narrowly yikes left moth in yikes bowed this that grizzly much hello on spoon-fed that alas rethought much decently richly and wow against the frequent fluidly at formidable acceptably flapped besides and much circa far over the bucolically hey precarious goldfinch mastodon goodness gnashed a jellyfish and one however because.</p>
+                </div>
+                <div class="additional-details-tab">
+                    <p>
+                        <table class="table-auto w-full border">
+                            <tr>
+                                <td>
+                                    Stand Up
+                                </td>
+                                <td>
+                                    35″L x 24″W x 37-45″H(front to back wheel)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Folded (w/o wheels)
+                                </td>
+                                <td>
+                                    32.5″L x 18.5″W x 16.5″H
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Folded (w/ wheels)
+                                </td>
+                                <td>
+                                    32.5″L x 24″W x 18.5″H
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Door Pass Through
+                                </td>
+                                <td>
+                                    24
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Frame
+                                </td>
+                                <td>
+                                    Aluminum
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Weight (w/o wheels)
+                                </td>
+                                <td>
+                                    20 LBS
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Weight Capacity
+                                </td>
+                                <td>
+                                    60 LBS
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Width
+                                </td>
+                                <td>
+                                    24"
+                                </td>
+                            </tr>
+                        </table>
+                    </p>
+                </div>
+                <div class="review-details-tab">
+                    <div class="flex gap-3">
+                        <div class="w-2/3">
+                            <div class="review-card my-3 flex border gap-5 p-5 rounded-lg">
+                                <div class="review-author">
+                                    <img src="img/author-2.png" alt="" class="w-20">
+                                    <p class="text-center mt-3 font-semibold">Sienna</p>
+                                </div>
+                                <div class="review-details w-full">
+                                    <div class="date-star flex justify-between text-xs">
+                                        <p class="text-slate-500 font-medium">December 4, 2024</p>
+                                        <div class="review-star-box">
+                                            <i class='bx bxs-star' ></i>
+                                            <i class='bx bxs-star' ></i>
+                                            <i class='bx bxs-star' ></i>
+                                            <i class='bx bxs-star' ></i>
+                                            <i class='bx bxs-star' ></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-data mt-2">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ducimus illo doloremque veniam doloribus! Minus recusandae facilis numquam dolorem minima. Consequatur dolor error ipsum et enim debitis adipisci consectetur neque.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-card my-3 flex border gap-5 p-5 rounded-lg">
+                                <div class="review-author">
+                                    <img src="img/author-2.png" alt="" class="w-20">
+                                    <p class="text-center mt-3 font-semibold">Sienna</p>
+                                </div>
+                                <div class="review-details w-full">
+                                    <div class="date-star flex justify-between text-xs">
+                                        <p class="text-slate-500 font-medium">December 4, 2024</p>
+                                        <div class="review-star-box">
+                                            <i class='bx bxs-star' ></i>
+                                            <i class='bx bxs-star' ></i>
+                                            <i class='bx bxs-star' ></i>
+                                            <i class='bx bxs-star' ></i>
+                                            <i class='bx bxs-star' ></i>
+                                        </div>
+                                    </div>
+                                    <div class="text-data mt-2">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla ducimus illo doloremque veniam doloribus! Minus recusandae facilis numquam dolorem minima. Consequatur dolor error ipsum et enim debitis adipisci consectetur neque.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="add-review">
+                                <h5 class="font-bold text-xl my-5">Add a Review</h5>
+                                <form action="" class="mt-5 grid grid-cols-2 gap-5">
+                                    <textarea name="" placeholder="Write Review" rows="5" class="col-span-2 border p-3"></textarea>
+                                    <input type="text" placeholder="Enter Your Name" class="col-span-1 border p-3">
+                                    <input type="text" placeholder="Enter Your Email" class="col-span-1 border p-3">
+                                    <div class="w-40">
+                                        <button class="font-semibold w-full p-3">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="w-1/3">
+                            <div class="review-details">
+                                <div class="review-star-box text-sm">
+                                    <i class='bx bxs-star' ></i>
+                                    <i class='bx bxs-star' ></i>
+                                    <i class='bx bxs-star' ></i>
+                                    <i class='bx bxs-star' ></i>
+                                    <i class='bx bxs-star' ></i>
+                                    <span class="ps-3">4.8 out of 5</span>
+                                </div>
+                                <div class="review-bar mt-5">
+                                    <ul class="text-xs flex gap-3 flex-col">
+                                        <li class="flex items-center">
+                                            <p class="text-slate-600 font-bold">5 Star</p>
+                                            <div class="" style="background-color: rgb(233, 233, 233); width: 80%; position: absolute; height: 100%; border-radius: 30px; right: 0;">
+                                                <div class="bar-progress" style="background-color: #3BB77E; width: 80%; height: 100%; border-radius: 30px; position: absolute; top: 0; left: 0;">
+                                                    <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold">50%</span></div>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <p class="text-slate-600 font-bold">5 Star</p>
+                                            <div class="bar"></div>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <p class="text-slate-600 font-bold">5 Star</p>
+                                            <div class="bar"></div>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <p class="text-slate-600 font-bold">5 Star</p>
+                                            <div class="bar"></div>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <p class="text-slate-600 font-bold">5 Star</p>
+                                            <div class="bar"></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-1/4 p-5 flex flex-col gap-9">
+            <div class="product-category border rounded-xl shadow-lg p-5">
+                <h1 class="mb-5 text-xl py-2 font-bold">Category</h1>
+                <ul class="flex flex-col gap-5">
+                    <li class="flex p-3 rounded-md justify-between items-center">
+                        <div class="flex gap-3 items-center">
+                            <img src="img/category-1.svg" alt="" class="w-7">
+                            <a href="" class="text-sm font-medium">
+                                Milks & Dairies
+                            </a>
+                        </div>
+                        <p class="text-xs font-bold">
+                            30
+                        </p>
+                    </li>
+                    <li class="flex p-3 rounded-md justify-between items-center">
+                        <div class="flex gap-3 items-center">
+                            <img src="img/category-1.svg" alt="" class="w-7">
+                            <a href="" class="text-sm font-medium">
+                                Milks & Dairies
+                            </a>
+                        </div>
+                        <p class="text-xs font-bold">
+                            30
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="new-products border rounded-xl shadow-lg p-5">
+                <h1 class="mb-5 text-xl py-2 font-bold">New Products</h1>
+                <ul class="flex flex-col gap-5">
+                    <li class="flex gap-4">
+                        <div class="image-box w-1/3">
+                            <img src="img/thumbnail-3.jpg" class="rounded" alt="">
+                        </div>
+                        <div class="new-product-detail w-2/3 flex flex-col gap-1">
+                            <a href="" class="font-bold">Chen Cardigan</a>
+                            <span class="text-sm font-semibold">$99.50</span>
+                            <div class="rating-box text-xs">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="image-box w-1/3">
+                            <img src="img/thumbnail-3.jpg" class="rounded" alt="">
+                        </div>
+                        <div class="new-product-detail w-2/3 flex flex-col gap-1">
+                            <a href="" class="font-bold">Chen Cardigan</a>
+                            <span class="text-sm font-semibold">$99.50</span>
+                            <div class="rating-box text-xs">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="image-box w-1/3">
+                            <img src="img/thumbnail-3.jpg" class="rounded" alt="">
+                        </div>
+                        <div class="new-product-detail w-2/3 flex flex-col gap-1">
+                            <a href="" class="font-bold">Chen Cardigan</a>
+                            <span class="text-sm font-semibold">$99.50</span>
+                            <div class="rating-box text-xs">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="new-products-banner relative">
+                <img src="img/banner-11.png" alt="" class=" rounded-xl">
+                <div class="detail-box1">
+                    <span class="text-xs font-semibold">Organic</span>
+                    <h3 class="font-bold">Save 17%<br>on <span>Organic</span><br>Juice</h3>
+                </div> 
+            </div>
+        </div>
+    </section>
+    <script>
+        let productDetailTab=document.querySelector(".product-details-tab")
+        let additionalDetailTab=document.querySelector(".additional-details-tab")
+        let reviewDetailTab=document.querySelector(".review-details-tab")
+        additionalDetailTab.style.display="none"
+        reviewDetailTab.style.display="none"
+        let pDesc=()=>{
+            productDetailTab.style.display="block"
+            additionalDetailTab.style.display="none"
+            reviewDetailTab.style.display="none"
+        }
+        let pAddi=()=>{
+            productDetailTab.style.display="none"
+            additionalDetailTab.style.display="block"
+            reviewDetailTab.style.display="none"
+        }
+        let pRev=()=>{
+            productDetailTab.style.display="none"
+            additionalDetailTab.style.display="none"
+            reviewDetailTab.style.display="block"
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hCaptcha Demo</title>
+  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+  <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+</head>
+<body>
+  <form action="verify" method="POST">
+    <input type="text" name="email" placeholder="Email" />
+    <input type="password" name="password" placeholder="Password" />
+    <div class="h-captcha" data-sitekey="cd8f3587-7548-43f8-99c2-0da087b29d98" data-callback="onHcaptchaSubmit"></div>
+    <input type="text" id="h-captcha-response" name="token" autocomplete="off">
+    <br />
+    <input type="submit" value="Submit" />
+  </form>
+
+  <!-- <form action="captcha" method="POST">
+    <input type="text" name="email" placeholder="Email" />
+    <input type="password" name="password" placeholder="Password" />
+    <div class="g-recaptcha" data-sitekey="6Le4z7gpAAAAAG_ZSfszwql4t6_d2Gn47zcspgSX"></div>
+    <br />
+    <input type="submit" value="Submit" />
+    
+  </form> -->
+
+
+  <script>
+    function onHcaptchaSubmit(token) {
+      document.getElementById('h-captcha-response').value = token;
+    }
+  </script>
+
+<!-- <script>
+  function onSubmit(token) {
+    document.getElementById("demo-form").submit();
+  }
+</script> -->
+
+</body>
+</html>

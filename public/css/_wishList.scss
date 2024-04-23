@@ -1,0 +1,51 @@
+#wishList{
+    h1{
+        color: #35374B;
+    }
+    span{
+        color: #3BB77E;
+    }
+    table{
+        th{
+            color: #35374B;
+        }
+        .wish-product{
+            .wish-product-detail{
+                a{
+                    color: #3BB77E;
+                }
+                
+            }
+        }
+        .wish-price{
+            h2{
+                color: #3BB77E;
+            }
+        }
+        .wish-stock{
+            
+            span{
+                background-color: #ddffef;
+                color: #3BB77E;
+                padding: 7px 14px;
+
+            }
+        }
+        .wish-add-cart{
+            button {
+                background-color: #3BB77E;
+                color: white;
+            }
+        }
+        .wish-trash{
+            button{
+                background-color: rgb(255, 221, 221);
+                color: rgb(202, 3, 3);
+                width: 40px;
+                border-radius: 50%;
+                height: 40px;
+            }
+        }
+    }
+    
+}

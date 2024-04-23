@@ -1,11 +1,125 @@
 #productPage{
+    .product-catalog{
+        h1{
+            color: #344955;
+        }
+        h2{
+            color: #3BB77E;
+        }
+        .product-label-tag{
+            span{
+                background-color: rgb(255, 203, 251);
+                padding: 5px 8px;
+                border-radius: 5px;
+                color: rgb(138, 0, 126);
+                font-weight: 900;
+            }
+        }
+        .size-box{
+            ul{
+                li{
+                    button{
+                        padding: 5px 8px;
+                        border-radius: 3px;
+                        border: 1px solid rgb(240, 240, 240);
+                        color: rgb(97, 97, 97);
+                        font-weight: 500;
+                        &:hover{
+                            background-color: #3BB77E;
+                            color: white;
+                            border: 1px solid transparent;    
+                        }
+                    }
+                    .active{
+                        background-color: #3BB77E;
+                        color: white;
+                        border: 1px solid transparent;
+                    }
+                }
+            }
+        }
+        .counter-and-cart{
+            .counter-box{
+                border: 1px solid #3BB77E;
+                button{
+                    color: #3BB77E;
+                }
+            }
+            .add-to-cart{
+                button{
+                    background-color: #3BB77E;
+                    color: white;
+                    transition: 0.2s;
+                    &:hover{
+                        background-color: #2f9465;
+                    }
+                }
+            }
+        }
+        .product-extra-spec{
+            span{
+                color: #3BB77E;
+                font-weight: 900;
+            }
+        }
+    }
     .product-detail-container{
         li{
-            a{
+            button{
                 border: 2px solid rgb(119, 201, 163);
             }
             .active{
                 
+            }
+        }
+        table{
+            tr{
+                td{
+                    border: 1px solid rgb(201, 201, 201);
+                    padding: 8px;
+                }
+            }
+        }
+        .review-details-tab{
+            .review-author{
+                p{
+                    color: #3BB77E;
+                }
+            }
+            .review-bar{
+                ul{
+                    li{
+                        position: relative;
+                        p{
+
+                        }
+                        .bar{
+                            background-color: rgb(233, 233, 233);
+                            width: 80%;
+                            position: absolute;
+                            height: 100%;
+                            border-radius: 30px;
+                            right: 0;
+                            &::before{
+                                content: "";
+                                background-color: #3BB77E;
+                                width: 50%;
+                                height: 100%;
+                                border-top-left-radius: 30px;
+                                border-bottom-left-radius: 30px;
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                            }
+                        }
+                    }
+                }
+            }
+            .add-review{
+                button{
+                    background-color: #3BB77E;
+                    color: white;
+                }
             }
         }
     }

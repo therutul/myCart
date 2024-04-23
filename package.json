@@ -9,10 +9,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
+    "express-hcaptcha": "^0.0.3",
+    "express-recaptcha": "^5.1.0",
+    "friendly-challenge": "^0.9.15",
+    "hcaptcha": "^0.1.1",
+    "joi": "^17.12.3",
     "mongoose": "^8.2.4",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
