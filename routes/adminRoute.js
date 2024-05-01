@@ -12,11 +12,21 @@ const productCategoryStorage=multer.diskStorage({
     },
     filename:(req,file,cb)=>{
         const timestamp=Date.now()
-        const fileName=`${file.originalname}-${timestamp}`
+        const fileName=`${timestamp}-${file.originalname}`
         cb(null,fileName)
     }
 })
-const productCategoryUpload = multer({ storage: productCategoryStorage }).single('productCategoryImg');
+
+const imageFilter=(req,file,cb)=>{
+    if (file.mimetype.startsWith('image/')) {
+        cb(null, true);
+    } else {
+        cb(new multer.MulterError('LIMIT_UNEXPECTED_FILE'), false);
+    }
+}
+
+
+const productCategoryUpload = multer({ storage: productCategoryStorage, fileFilter: imageFilter }).single('productCategoryImg');
 
 
 const hcaptchaMiddleware = hcaptcha.middleware.validate(SECRET);

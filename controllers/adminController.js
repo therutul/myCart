@@ -1,6 +1,6 @@
 // const express=require('express')
 const db=require('../configs/database')
-const AdminAuth=require('../models/adminSchema')
+const {AdminAuth,ProductCategory}=require('../models/adminSchema')
 const request = require('request');
 const bcrypt = require('bcrypt');
 const index=(req,res)=>{
@@ -38,13 +38,22 @@ const signup=async (req,res)=>{
     await newLogin.save()
     res.redirect('back')
 }
-const uploadProductCategoryImage =(req,res)=>{
-    console.log(req.file)
+function validateImage(file) {
+    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    return allowedMimeTypes.includes(file.mimetype);
+}
+const uploadProductCategoryImage =async (req,res)=>{
     if (!req.file) {
         req.flash('error', 'No file uploaded.');
         return res.redirect('back');
     }
+    if (!validateImage(req.file)) {
+        req.flash('error', 'Invalid image format. Please upload a JPEG, PNG, or GIF image.');
+        return res.redirect('back');
+    }
+
     req.flash('success', 'Category Successfully Added');
+    return res.redirect('back');
 }
 module.exports={
     index,

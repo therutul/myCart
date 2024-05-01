@@ -36,4 +36,8 @@ const productCategory = mongoose.Schema({
     }
 })
 const AdminAuth=mongoose.model("AdminAuth",adminAuth)
-module.exports=AdminAuth
+const ProductCategory=mongoose.model("ProductCategory",productCategory)
+module.exports={
+    AdminAuth,
+    ProductCategory
+}
