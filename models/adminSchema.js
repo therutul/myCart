@@ -20,19 +20,15 @@ const productCategory = mongoose.Schema({
     },
     categoryDescription:{
         type:String,
-        required:true
     },
     categoryPrice:{
         type:Number,
-        required:true
     },
     categoryQuantity:{
         type:Number,
-        required:true
     },
     categoryStatus:{
         type:String,
-        required:true
     }
 })
 const AdminAuth=mongoose.model("AdminAuth",adminAuth)

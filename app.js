@@ -2,6 +2,7 @@ const express=require('express')
 const app=express()
 const PORT=process.env.PORT||5500
 const path=require('path')
+const browserSync = require('browser-sync');
 const session = require('express-session');
 const flash = require('connect-flash');
 
@@ -36,16 +37,34 @@ app.use(function(req, res, next) {
     next();
 });
 
-const livereload = require("livereload");
-const connectLiveReload = require("connect-livereload");
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(path.join(__dirname, "views"));
-liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-        liveReloadServer.refresh("/");
-    }, 100);
+const bs = browserSync.create();
+bs.init({
+    proxy: 'http://localhost:5500', // Proxy requests to your Express server
+    port: 3000, // Specify the port for BrowserSync
+    // ui: {
+    //     port: 3001 // Specify the port for BrowserSync UI
+    // },
+    ui:false,
+    files: ['**/*.ejs', '**/*.css', '**/*.js'], // Files to watch for changes
+    injectChanges: true, // Inject CSS changes directly into the browser (optional)
+    notify: false,
+    browser: 'firefox', // Optional: specify a specific browser to launch
+    ghostMode: false,
+    open: false,
+    // browser: 'firefox'
 });
-app.use(connectLiveReload());
+
+
+// const livereload = require("livereload");
+// const connectLiveReload = require("connect-livereload");
+// const liveReloadServer = livereload.createServer();
+// liveReloadServer.watch(path.join(__dirname, "views"));
+// liveReloadServer.server.once("connection", () => {
+//     setTimeout(() => {
+//         liveReloadServer.refresh("/");
+//     }, 100);
+// });
+// app.use(connectLiveReload());
 
 
 

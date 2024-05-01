@@ -27,8 +27,9 @@ const error404=(req,res)=>{
 const forgetpassword=(req,res)=>{
     res.render('admin/forget-password')
 }
-const addProductCategory=(req,res)=>{
-    res.render('admin/add-product-category')
+const addProductCategory= async (req,res)=>{
+    const renderCategory=await ProductCategory.find({})
+    res.render('admin/add-product-category',{renderCategory})
 }
 const signup=async (req,res)=>{
     const newLogin=new AdminAuth({
@@ -38,20 +39,22 @@ const signup=async (req,res)=>{
     await newLogin.save()
     res.redirect('back')
 }
-function validateImage(file) {
-    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
-    return allowedMimeTypes.includes(file.mimetype);
-}
+
 const uploadProductCategoryImage =async (req,res)=>{
+    if (req.fileValidationError) {
+        req.flash('error', req.fileValidationError);
+        return res.redirect('back');
+    }
     if (!req.file) {
         req.flash('error', 'No file uploaded.');
         return res.redirect('back');
     }
-    if (!validateImage(req.file)) {
-        req.flash('error', 'Invalid image format. Please upload a JPEG, PNG, or GIF image.');
-        return res.redirect('back');
-    }
 
+    const newProductCategory=new ProductCategory({
+        categoryName:req.body.categoryName,
+        categoryImage:req.file.filename
+    })
+    await newProductCategory.save()
     req.flash('success', 'Category Successfully Added');
     return res.redirect('back');
 }

@@ -21,7 +21,8 @@ const imageFilter=(req,file,cb)=>{
     if (file.mimetype.startsWith('image/')) {
         cb(null, true);
     } else {
-        cb(new multer.MulterError('LIMIT_UNEXPECTED_FILE'), false);
+        req.fileValidationError = 'Invalid image format. Please upload a JPEG & PNG Format.';
+        cb(null, false);
     }
 }
 

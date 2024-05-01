@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "concurrently \"nodemon -e ejs,js,css\" \"npx tailwindcss -i ./public/css/style.css -o ./public/css/main.css --watch\""
+    "start": "concurrently \"nodemon app.js\" \"npx tailwindcss -i ./public/css/style.css -o ./public/css/main.css --watch\""
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +28,7 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "browser-sync": "^3.0.2",
     "concurrently": "^8.2.2",
     "connect-livereload": "^0.6.1",
     "livereload": "^0.9.3",

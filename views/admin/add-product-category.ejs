@@ -33,7 +33,7 @@
           <!-- end of navbar -->
           <div class="p-6">
             <div class="flex">
-              <div class="grid grid-cols-2 gap-6">
+              <div class="grid grid-cols-2 gap-6 w-full">
                 <div class="card shadow ">
                   <div class="card-body">
                     
@@ -79,10 +79,32 @@
                 </div> 
                 <div class="card shadow">
                   <div class="card-body">
-                    <h4 class="">Add Product Category</h4>
-                    <input type="text" class=" border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none" placeholder="This is Placeholder" />
-                    <p class="mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a class="mt-2 btn gap-x-2 bg-indigo-600 text-white border-indigo-600 disabled:opacity-50 disabled:pointer-events-none hover:bg-indigo-800 hover:border-indigo-800 active:bg-indigo-800 active:border-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300" href="#">Go somewhere</a>
+                    <h4 class="border-b">Product Category</h4>
+                    <%if (renderCategory.length > 0) {%>
+                      <div class="relative overflow-x-auto">
+                        <table class="text-left w-full whitespace-nowrap">
+                          <thead class="bg-gray-200 text-gray-700 ">
+                            <tr class="border-gray-300 border-b ">
+                              <th scope="col" class="px-6 py-3">#</th>
+                              <th scope="col" class="px-6 py-3">Image</th>
+                              <th scope="col" class="px-6 py-3">Category</th>
+                            </tr>
+                          </thead>
+                          <tbody class="divide-y ">
+                            <% renderCategory.forEach((category,index) => {%>
+                              <tr class="border-gray-300 border-b ">
+                                <td class="py-3 px-6 text-left"><%=index+1%></td>
+                                <td class="py-3 px-6 text-left"><%=index+1%></td>
+                                <td scope="col" class="px-6 py-3"><%=index+1%></td>
+                              </tr>
+                              
+                            <%}); %>
+                          </tbody>
+                        </table>
+                      </div>
+                      <% }else{ %>
+                        <h5 class="mt-4">No Category Added</h5>
+                        <% } %>
                   </div>
                 </div> 
               </div>
