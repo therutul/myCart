@@ -39,11 +39,12 @@ const signup=async (req,res)=>{
     res.redirect('back')
 }
 const uploadProductCategoryImage =(req,res)=>{
+    console.log(req.file)
     if (!req.file) {
         req.flash('error', 'No file uploaded.');
-        return res.redirect('/admin/profile'); // Redirect with error flash message
+        return res.redirect('back');
     }
-    req.flash('success', 'Role removed successfully.');
+    req.flash('success', 'Category Successfully Added');
 }
 module.exports={
     index,

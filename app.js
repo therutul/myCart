@@ -5,7 +5,7 @@ const path=require('path')
 const session = require('express-session');
 const flash = require('connect-flash');
 
-const multer=require('multer')
+
 const cors = require('cors');
 const request = require('request');
 const hcaptcha = require('express-hcaptcha');
@@ -48,17 +48,6 @@ liveReloadServer.server.once("connection", () => {
 app.use(connectLiveReload());
 
 
-const productCategoryStorage=multer.diskStorage({
-    destination:(req,file,cb)=>{
-        cb(null,'storage/productcategory')
-    },
-    filename:(req,file,cb)=>{
-        const timestamp=Date.now()
-        const fileName=`${file.originalname}-${timestamp}`
-        cb(null,fileName)
-    }
-})
-const productCategoryUpload = multer({ storage: productCategoryStorage }).single('productCategoryImg');
 
 
 
