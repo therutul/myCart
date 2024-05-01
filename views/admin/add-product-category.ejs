@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./assets/libs/prismjs/themes/prism-okaidia.min.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon/favicon.ico" />
+    <!-- Libs CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="./assets/libs/simplebar/dist/simplebar.min.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="./assets/css/theme.min.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Documentation - TailwindCSS HTML Admin Template Free - Dash UI" />
+    <title>Documentation - TailwindCSS HTML Admin Template Free - Dash UI</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <main>
+      <!-- start introduction -->
+      <!-- app layout -->
+      <div id="app-layout" class="overflow-x-hidden flex">
+        <!-- start navbar -->
+        <%-include('sidebar')-%>
+        <!--end of navbar-->
+        <!-- app layout content -->
+        <div id="app-layout-content" class="min-h-screen w-full min-w-[100vw] md:min-w-0 ml-[15.625rem] [transition:margin_0.25s_ease-out]">
+          <!-- start navbar -->
+          <%-include('header')-%>
+          <!-- end of navbar -->
+          <div class="p-6">
+            <div class="flex">
+              <div class="grid grid-cols-2 gap-6">
+                <div class="card shadow ">
+                  <div class="card-body">
+                    
+                    <h4 class="border-b">Add Product Category</h4>
+                    <label class="mt-4 block text-gray-800">Category Name</label>
+                    <input name="categoryName" placeholder="Enter Product Category Name" type="text" class="mt-2 border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none" />
+
+                    <label class="mt-4 block text-gray-800">Category Image</label>
+                    <input name="categoryImage" placeholder="Select Product Category Image" type="file" class="mt-2 border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none" />
+
+                    <div class="flex items-center gap-2 mt-4">
+                      <button id="addCategory" type="button" class="btn gap-x-2 bg-teal-600 text-white border-teal-600 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-teal-700 hover:border-teal-700 active:bg-teal-700 active:border-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300">
+                        Add
+                      </button>
+                      <div class="animate-spin hidden w-4 h-4 border-[3px] border-current border-t-transparent text-green-600 rounded-full " role="status" aria-label="loading">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+
+                    <div class="bg-teal-200 mt-5 flex items-center w-full text-gray-900 rounded-lg p-4 alert" role="alert">
+                      <span><span class="font-bold">Success:</span> Product Category Added</span>
+                      <button type="button" class="btn-close ms-auto -mx-1.5 -my-1.5 text-gray-900 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 " data-bs-dismiss="alert" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div> 
+                <div class="card shadow">
+                  <div class="card-body">
+                    <h4 class="">Add Product Category</h4>
+                    <input type="text" class=" border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none" placeholder="This is Placeholder" />
+                    <p class="mt-1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a class="mt-2 btn gap-x-2 bg-indigo-600 text-white border-indigo-600 disabled:opacity-50 disabled:pointer-events-none hover:bg-indigo-800 hover:border-indigo-800 active:bg-indigo-800 active:border-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300" href="#">Go somewhere</a>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+          <%-include('footer')-%>
+        </div>
+      </div>
+      <!-- end of introduction -->
+    </main>
+    <!-- Libs JS -->
+    <script src="./assets/libs/feather-icons/dist/feather.min.js"></script>
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <!-- Theme JS -->
+    <script src="./assets/js/theme.min.js"></script>
+    <script src="./assets/libs/prismjs/prism.js"></script>
+    <script src="./assets/libs/prismjs/components/prism-scss.min.js"></script>
+    <script src="./assets/libs/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="./assets/libs/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#addCategory").click(function() {
+          event.preventDefault();
+          $(this).prop('disabled', true);
+          $('.animate-spin').show();
+          let formData = new FormData();
+          formData.append('categoryName',$('input[name="categoryName"]').val())
+          formData.append('categoryImage',$('input[name="categoryImage"]')[0].files[0])
+          $.ajax({
+            url:'./upload/productcategory',
+            type:'POST',
+            data: formData,
+            processData: false, // Ensure that jQuery doesn't process the data
+            contentType: false,
+            success: function(response){
+              $('.animate-spin').hide();
+
+              // Enable the button
+              $('#addCategory').prop('disabled', false);
+            },
+            error: function(xhr, status, error) {
+                // Hide the loading spinner
+                $('.animate-spin').hide();
+                // $('.alert span').text(data);
+
+                // Enable the button
+                $('#addCategory').prop('disabled', false);
+
+                // Show error message
+              console.error(error);
+            }
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
