@@ -45,6 +45,8 @@ router.get('/remove-product-category/:categoryId',adminController.removeProductC
 router.get('/edit-product-category/',adminController.editProductCategory)
 router.post('/upload/productcategory',productCategoryUpload,adminController.uploadProductCategoryImage)
 router.get('/add-product',adminController.addProductGet)
+router.get('/orders',adminController.orders)
+router.get('/products',adminController.products)
 // router.get('/custom',indexController.custom)
 // router.post('/verify',hcaptchaMiddleware,indexController.verify)
 // router.post('/captcha',indexController.captcha)

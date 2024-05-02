@@ -105,6 +105,12 @@ const addProductGet= async (req,res)=>{
     const renderCategory=await ProductCategory.find({})
     res.render('admin/add-product',{renderCategory})
 }
+const orders= async (req,res)=>{
+    res.render('admin/orders')
+}
+const products= async (req,res)=>{
+    res.render('admin/products')
+}
 
 module.exports={
     index,
@@ -120,5 +126,7 @@ module.exports={
     removeProductCategory,
     uploadProductCategoryImage,
     editProductCategory,
-    addProductGet
+    addProductGet,
+    orders,
+    products
 }
