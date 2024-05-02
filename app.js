@@ -5,7 +5,7 @@ const path=require('path')
 const browserSync = require('browser-sync');
 const session = require('express-session');
 const flash = require('connect-flash');
-
+const fs = require('fs');
 
 const cors = require('cors');
 const request = require('request');
@@ -33,7 +33,9 @@ app.use(session({
 app.use(flash());
 app.use(function(req, res, next) {
     res.locals.success_messages = req.flash('success');
+    res.locals.success_messages2 = req.flash('success2');
     res.locals.error_messages = req.flash('error');
+    res.locals.error_messages2 = req.flash('error2');
     next();
 });
 
