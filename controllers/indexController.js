@@ -81,7 +81,7 @@ const ratingPost= async(req,res)=>{
 
 const product=async(req,res)=>{
     const productId=req.query.id
-    const productInfo=await Product.findById(productId)
+    const productInfo=await Product.findById(productId).populate('productCategory')
     res.render('product',{productInfo})
 
 }

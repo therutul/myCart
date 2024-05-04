@@ -19,7 +19,7 @@
                 </div>
                 <div class="product-basic w-1/2">
                     <div class="product-label-tag text-sm font-semibold">
-                        <span>50% Off</span>
+                        <span><%=productInfo.productDiscount%>% Off</span>
                     </div>
                     <div class="product-title mt-3">
                         <h1 class="text-4xl font-semibold"><%=productInfo.productName%></h1>
@@ -35,11 +35,13 @@
                         </div>
                     </div>
                     <div class="product-price flex items-center gap-4 mt-5">
-                        <h2 class="text-5xl font-bold">$38</h2>
-                        <h3 class="text-2xl line-through font-semibold text-slate-500">$52</h3>
+                        <h2 class="text-5xl font-bold">$<%=productInfo.productPrice-(productInfo.productPrice)*productInfo.productDiscount/100 %></h2>
+                        <h3 class="text-2xl line-through font-semibold text-slate-500">$<%=productInfo.productPrice %></h3>
                     </div>
                     <div class="product-semi-detail mt-5">
-                        <p class="text-slate-500 font-medium">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi laudantium quod autem quas eveniet natus culpa quos minus consequuntur mollitia dolores, reprehenderit blanditiis nesciunt provident numquam quae molestias voluptate adipisci?</p>
+                        <p class="text-slate-500 font-medium">
+                            <%=productInfo.productDescription%>
+                        </p>
                     </div>
                     <div class="size-box flex items-center mt-5 text-sm">
                         <div class="size-title">
@@ -88,35 +90,35 @@
                         </div>
                     </div>
                     <div class="product-extra-spec mt-5">
-                        <table class="table-auto w-2/3 text-sm font-medium text-slate-500">
+                        <table class="table-auto w-4/5 text-sm font-medium text-slate-500">
                             <tr>
                                 <td class="py-1">
-                                    <label>Type: </label>
-                                    <span>Organic</span>
+                                    <label>Category: </label>
+                                    <span><%=productInfo.productCategory.categoryName%></span>
                                 </td>
                                 <td class="py-1">
-                                    <label>Type: </label>
-                                    <span>Organic</span>
-                                </td>
-                            </tr>
-                            <tr class="">
-                                <td class="py-1">
-                                    <label>Type: </label>
-                                    <span>Organic</span>
-                                </td>
-                                <td class="py-1">
-                                    <label>Type: </label>
-                                    <span>Organic</span>
+                                    <label>Tags: </label>
+                                    <span><%=productInfo.productTags%></span>
                                 </td>
                             </tr>
                             <tr class="">
                                 <td class="py-1">
-                                    <label>Type: </label>
-                                    <span>Organic</span>
+                                    <label>Stock Available: </label>
+                                    <span><%=productInfo.productStock%></span>
                                 </td>
                                 <td class="py-1">
                                     <label>Type: </label>
-                                    <span>Organic</span>
+                                    <span><%=productInfo.productType%></span>
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <td class="py-1">
+                                    <label>MFG Date: </label>
+                                    <span><%=new Date(productInfo.productMfg).toISOString().slice(0,10)%></span>
+                                </td>
+                                <td class="py-1">
+                                    <label>Expirty Date: </label>
+                                    <span><%=new Date(productInfo.productExpiry).toISOString().slice(0,10)%></span>
                                 </td>
                             </tr>
                         </table>
