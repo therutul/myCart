@@ -2020,6 +2020,10 @@ input::placeholder {
     --tw-bg-opacity: 1;
     background-color: rgb(15 118 110 / var(--tw-bg-opacity));
 }
+.hover\:bg-custom-700:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(59 183 126 / var(--tw-bg-opacity));
+}
 .hover\:bg-yellow-700:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(161 98 7 / var(--tw-bg-opacity));

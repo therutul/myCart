@@ -1,12 +1,88 @@
 // const express=require('express')
 const db=require('../configs/database')
+const jwt = require('jsonwebtoken')
+const {AdminAuth,ProductCategory,Product,Rating,User}=require('../models/adminSchema')
 const request = require('request');
-const index=(req,res)=>{
-    res.render('index')
+const index=async(req,res)=>{
+    const getProducts=await Product.find({}).populate('productCategory')
+    res.render('index',{getProducts})
 }
 const custom=(req,res)=>{
     res.render('custom')
 }
+
+const ratingPost= async(req,res)=>{
+    
+    const {productId} = req.params;
+    console.log(req.params)
+    console.log("================================================")
+    console.log(productId)
+    console.log("================================================")
+    const {rating,comment} = req.body;
+    console.log(rating)
+    console.log("================================================")
+    console.log(comment)
+    console.log("================================================")
+
+    const product=await Product.findById(productId);
+    const userId=req.cookies.logged
+    console.log(req.session.user)
+    // req.session.user = "rutul"
+    // const user = await User.findOne({_id:userId})
+    if(product)
+    try {
+        // Check if product exists
+        // const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({
+                message: 'Product not found'
+            });
+        }
+
+        // Check if user is logged in (implement authentication logic here)
+        // if (!req.user) { // Replace `req.user` with your authentication check
+        //     return res.status(401).json({
+        //         message: 'You must be logged in to rate'
+        //     });
+        // }
+        // const newUser=new User({
+        //     userName:"rutul"
+        // })
+        // await newUser.save()
+        // Create a new rating
+        const newRating = new Rating({
+            userId: "6635225fa0f47cce4beda2a1", // Assuming user ID is available in req.user
+            productId,
+            rating,
+            comment,
+        });
+
+        // Save the rating and update the product's ratings
+        // await newRating.save();
+        console.log(newRating)
+        console.log("1================================================")
+        product.productRatings.push(newRating);
+        // await product.save();
+        console.log(product.productRatings)
+        console.log("3================================================")
+        console.log(product)
+        console.log("4================================================")
+
+        res.json({
+            message: 'Rating submitted successfully'
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: 'An error occurred'
+        });
+    }
+}
+
+
+
+
+
 // // 6Le4z7gpAAAAAG_ZSfszwql4t6_d2Gn47zcspgSX
 // // 6Le4z7gpAAAAAGSN5JENyfsYhWTFScwRFeOE3Tse
 // const captcha = (req, res) => {
@@ -47,9 +123,29 @@ const verify=(req,res)=>{
     // Mock response for demonstration
     res.json({ message: 'Verified!', hcaptchaResponse });
 }
+const customPost=async(req,res)=>{
+    // req.session.user=encodeURIComponent("6635225fa0f47cce4beda2a1")
+    req.session.user="rutul"
+    console.log(req.session)
+
+
+    res.redirect('/')
+}
+const checkSession= async (req, res) => {
+    // Check if the session user exists
+    // res.send(req.session);
+    const payload = { user: req.session.user };
+    const token = jwt.sign(payload, "123456", { expiresIn: '1h' });
+    res.cookie('token', token);
+    res.send(token)
+    // res.send(encodeURIComponent("6635225fa0f47cce4beda2a1"))
+};
 
 module.exports={
     index,
     custom,
-    verify
+    verify,
+    ratingPost,
+    customPost,
+    checkSession,
 }

@@ -1,6 +1,6 @@
 // const express=require('express')
 const db=require('../configs/database')
-const {AdminAuth,ProductCategory}=require('../models/adminSchema')
+const {AdminAuth,ProductCategory,Product}=require('../models/adminSchema')
 const request = require('request');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
@@ -105,11 +105,134 @@ const addProductGet= async (req,res)=>{
     const renderCategory=await ProductCategory.find({})
     res.render('admin/add-product',{renderCategory})
 }
+const addProductPost= async (req,res)=>{
+    const { productName, 
+        productCategory, 
+        productCode, 
+        productDescription, 
+        productPrice, 
+        productDiscount, 
+        productStock, 
+        productType, 
+        productMfg, 
+        productExpiry, 
+        productTags } = req.body;
+    if (!productName || !productCode || !productDescription || !productCategory || !productPrice || !productDiscount || !productStock || !productType || !productMfg || !productExpiry || !productTags) {
+        req.flash('error', 'All fields are required');
+        return res.redirect('back');
+    }
+
+    if (req.fileValidationError) {
+        req.flash('error', req.fileValidationError);
+        return res.redirect('back');
+    }
+
+    if (Object.keys(req.files).length !== 4) {
+        req.flash('error', 'Please Upload Exactly Four Image Files');
+        return res.redirect('back');
+    }
+    
+
+    const productImgPaths = [
+        req.files['productImg1'][0].filename,
+        req.files['productImg2'][0].filename,
+        req.files['productImg3'][0].filename,
+        req.files['productImg4'][0].filename
+    ];
+    console.log(req.files['productImg1'][0].path)
+    const newProduct = new Product({
+        productName,
+        productCode,
+        productImages: productImgPaths,
+        productDescription,
+        productCategory: req.body.productCategory,
+        productPrice,
+        productDiscount,
+        productStock,
+        productType,
+        productMfg,
+        productExpiry,
+        productTags: productTags.split(',') // Assuming product tags are comma-separated strings
+    });
+    console.log(newProduct)
+    await newProduct.save();
+    req.flash('success', 'Product Added Successfully');
+    res.redirect('back')
+}
 const orders= async (req,res)=>{
     res.render('admin/orders')
 }
 const products= async (req,res)=>{
-    res.render('admin/products')
+    if(req.query.view){
+        const getProducts=await Product.findById(req.query.view)
+        const renderCategory=await ProductCategory.find({})
+        const selectedCategoryId = getProducts.productCategory
+        // console.log(selectedCategoryId)
+        return res.render('admin/productpage',{getProducts,renderCategory,selectedCategoryId})
+        
+    }
+    const getProducts=await Product.find({})
+    res.render('admin/productlist',{getProducts})
+}
+const editProduct= async (req,res)=>{
+    console.log("im here")
+    const { productId,
+        productName, 
+        productCategory, 
+        productCode, 
+        productDescription, 
+        productPrice, 
+        productDiscount, 
+        productStock, 
+        productType, 
+        productMfg, 
+        productExpiry, 
+        productTags } = req.body;
+    const updateProduct= await Product.findById(productId)
+    console.log(updateProduct.productImages[0])
+    if (req.fileValidationError) {
+        req.flash('error', req.fileValidationError);
+        return res.redirect('back');
+    }
+
+    const productImgPaths=[]
+    if(req.files['productImg1']){
+        productImgPaths.push(req.files['productImg1'][0].filename)
+    }else{
+        productImgPaths.push(updateProduct.productImages[0])
+    }
+    if(req.files['productImg2']){
+        productImgPaths.push(req.files['productImg2'][0].filename)
+    }else{
+        productImgPaths.push(updateProduct.productImages[1])
+    }
+    if(req.files['productImg3']){
+        productImgPaths.push(req.files['productImg3'][0].filename)
+    }else{
+        productImgPaths.push(updateProduct.productImages[2])
+    }
+    if(req.files['productImg4']){
+        productImgPaths.push(req.files['productImg4'][0].filename)
+    }else{
+        productImgPaths.push(updateProduct.productImages[3])
+    }
+    updateProduct.productName = productName;
+    updateProduct.productCode = productCode;
+    updateProduct.productImages = productImgPaths;
+    updateProduct.productDescription = productDescription;
+    updateProduct.productCategory = productCategory;
+    updateProduct.productPrice = productPrice;
+    updateProduct.productDiscount = productDiscount;
+    updateProduct.productStock = productStock;
+    updateProduct.productType = productType;
+    updateProduct.productMfg = productMfg;
+    updateProduct.productExpiry = productExpiry;
+    updateProduct.productTags = productTags.split(',')
+
+    // console.log(updateProduct)
+    await updateProduct.save();
+    req.flash('success', 'Product Updated Successfully');
+    res.redirect('back')
 }
 
 module.exports={
@@ -128,5 +251,7 @@ module.exports={
     editProductCategory,
     addProductGet,
     orders,
-    products
+    products,
+    addProductPost,
+    editProduct
 }

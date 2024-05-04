@@ -8,7 +8,11 @@ const indexController=require('../controllers/indexController')
 
 const hcaptchaMiddleware = hcaptcha.middleware.validate(SECRET);
 router.get('/',indexController.index)
+
 router.get('/custom',indexController.custom)
 router.post('/verify',hcaptchaMiddleware,indexController.verify)
+router.post('/products/:productId/rate',indexController.ratingPost)
 // router.post('/captcha',indexController.captcha)
+router.post('/post',indexController.customPost)
+router.get('/check-session',indexController.checkSession)
 module.exports=router

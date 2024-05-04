@@ -22,6 +22,7 @@
     "friendly-challenge": "^0.9.15",
     "hcaptcha": "^0.1.1",
     "joi": "^17.12.3",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.4",
     "multer": "1.4.5-lts.1",
     "nodemon": "^3.1.0",
