@@ -39,7 +39,7 @@
                     <img src="/productimg/<%=product.productImages[0]%>" alt="">
                 </div>
                 <a href="" class="text-slate-400 font-medium text-sm"><%=product.productCategory.categoryName%></a>
-                <a href="" class="font-medium mt-2"><%=product.productName%></a>
+                <a href="/product?id=<%=product._id%>" class="font-medium mt-2"><%=product.productName%></a>
                 <form action="/products/<%= product._id %>/rate" method="POST">
                     <div class="form-group">
                         <label for="rating">Rating</label>

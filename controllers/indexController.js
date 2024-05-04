@@ -79,6 +79,12 @@ const ratingPost= async(req,res)=>{
     }
 }
 
+const product=async(req,res)=>{
+    const productId=req.query.id
+    const productInfo=await Product.findById(productId)
+    res.render('product',{productInfo})
+
+}
 
 
 
@@ -131,13 +137,21 @@ const customPost=async(req,res)=>{
 
     res.redirect('/')
 }
+const customGet=async(req,res)=>{
+    // req.session.user=encodeURIComponent("6635225fa0f47cce4beda2a1")
+    req.session.user="rutul"
+    console.log(req.session)
+
+
+    res.redirect('/')
+}
 const checkSession= async (req, res) => {
     // Check if the session user exists
-    // res.send(req.session);
+    res.send(req.session);
     const payload = { user: req.session.user };
     const token = jwt.sign(payload, "123456", { expiresIn: '1h' });
     res.cookie('token', token);
-    res.send(token)
+    // res.send(token)
     // res.send(encodeURIComponent("6635225fa0f47cce4beda2a1"))
 };
 
@@ -147,5 +161,7 @@ module.exports={
     verify,
     ratingPost,
     customPost,
+    customGet,
     checkSession,
+    product
 }

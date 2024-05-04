@@ -13,6 +13,12 @@ router.get('/custom',indexController.custom)
 router.post('/verify',hcaptchaMiddleware,indexController.verify)
 router.post('/products/:productId/rate',indexController.ratingPost)
 // router.post('/captcha',indexController.captcha)
+router.get('/product',indexController.product)
+
+
+
+
 router.post('/post',indexController.customPost)
+router.get('/get',indexController.customGet)
 router.get('/check-session',indexController.checkSession)
 module.exports=router
