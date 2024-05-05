@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  <section class="container mx-auto" id="mngos">
+    <h1 class="text-4xl font-bold">Mongoose Query Execute</h1>
+    <form action="/mongoose" method="post" class="flex gap-5">
+      <input style="font-size: 18px;width: 90%; padding: 10px 0px;" value="" autocomplete="on" name="mnQuery" placeholder="Enter Query" type="text" class="">
+      <button style="width: 50px; background-color: lightgreen; padding: 10px 0;" id="hitQuery" type="button" class=""> Send </button>
+
+    </form>
+
+    <textarea autocomplete="off" style="font-size: 18px;width: 90%; margin-top: 20px;" placeholder="Result will display here" id="outQuery" rows="20" class=""></textarea>
+    
+  </section>
+  <script>
+    $(document).ready(function(){
+      $("input[name=mnQuery]").keypress(function(event) {
+        if (event.which === 13) { // Check if the key pressed is Enter (key code 13)
+          event.preventDefault();
+          $("#hitQuery").click(); // Simulate a click on the button
+        }
+      });
+      $("#hitQuery").click(function(event) {
+        event.preventDefault(); // Prevent default form submission if applicable
+        // Get the query data from the input field
+        const queryData = $("input[name=mnQuery]").val();
+
+        if (!queryData) {
+          alert("Please enter a query!");
+          return; // Exit the function if no query data is provided
+        }
+
+        $.ajax({
+          url: "/mongoose", // Replace with your actual server-side endpoint
+          method: "POST",
+          data: { queryData }, // Send data as an object
+          dataType: "json",
+          success: function(response) {
+            // Handle successful response from the server
+            let jsonString = JSON.stringify(response, null, 2);
+            $("#outQuery").html("")
+            
+            // Display the formatted JSON in a <pre> tag
+            $("#outQuery").html(jsonString);
+            // $("#outQuery").val(JSON.stringify(response)); // Update the output field with the response
+            console.log("Success:", response); // Log the response for debugging
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            // Handle errors during the AJAX request
+            $("#outQuery").html("")
+            console.error("Error:", textStatus, errorThrown);
+            $("#outQuery").html("Error: " + errorThrown); // Display a user-friendly error message
+          }
+        });
+      });
+
+    })
+  </script>
+
+  
+</body>
+</html>

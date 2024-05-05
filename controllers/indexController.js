@@ -155,6 +155,24 @@ const checkSession= async (req, res) => {
     // res.send(encodeURIComponent("6635225fa0f47cce4beda2a1"))
 };
 
+const mongooseQueryGet=(req,res)=>{
+    res.render('mongoose')
+}
+
+const mongooseQueryPost= async(req,res)=>{
+    try {
+        const getQuery=req.body.queryData
+        const result = await eval(getQuery)
+        // console.log(JSON.stringify(result, null, 2)) //only console.log(result) will give wrapped result of object and array
+        console.dir(result)
+        res.json(result)
+    } catch (error) {
+        console.error(error); // Log the error for debugging
+        res.status(500).json({ error: 'Internal server error' });
+    }
+    
+}
+
 module.exports={
     index,
     custom,
@@ -163,5 +181,7 @@ module.exports={
     customPost,
     customGet,
     checkSession,
-    product
+    product,
+    mongooseQueryGet,
+    mongooseQueryPost
 }

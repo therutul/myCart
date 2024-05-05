@@ -14,7 +14,8 @@ router.post('/verify',hcaptchaMiddleware,indexController.verify)
 router.post('/products/:productId/rate',indexController.ratingPost)
 // router.post('/captcha',indexController.captcha)
 router.get('/product',indexController.product)
-
+router.get('/mongoose',indexController.mongooseQueryGet)
+router.post('/mongoose',indexController.mongooseQueryPost)
 
 
 

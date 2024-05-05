@@ -71,14 +71,14 @@
                     <div class="counter-and-cart mt-5 flex items-center gap-5">
                         <div class="counter-box flex border w-20 rounded-md px-1">
                             <div class="add-count flex justify-center items-center flex-1">
-                                <span class="text-xl font-medium">11</span>
+                                <span id="currentQty" class="text-xl font-medium">1</span>
                             </div>
                             <div class="up-down flex flex-col justify-between items-center">
                                 <div class="up-arrow p-0 m-0 text-xl">
-                                    <button><i class='bx bxs-up-arrow-square' ></i></button>
+                                    <button id="addQty"><i class='bx bxs-up-arrow-square' ></i></button>
                                 </div>
                                 <div class="down-arrow p-0 m-0 text-xl">
-                                    <button><i class='bx bxs-down-arrow-square' ></i></button>
+                                    <button id="lessQty"><i class='bx bxs-down-arrow-square' ></i></button>
                                 </div>
                             </div>
                         </div>
@@ -128,13 +128,13 @@
             <div class="product-detail-container rounded-lg border mt-5 p-5">
                 <ul class="flex gap-3 mb-10">
                     <li>
-                        <button class="rounded-full py-2 px-4 active" onclick="pDesc()" id="productDetailBox">Description</button>
+                        <button class="rounded-full py-2 px-4 active"  id="productDetailBox">Description</button>
                     </li>
                     <li>
-                        <button class="rounded-full py-2 px-4" onclick="pAddi()" id="additionalBox">Additional Info</button>
+                        <button class="rounded-full py-2 px-4" id="additionalBox">Additional Info</button>
                     </li>
                     <li>
-                        <button class="rounded-full py-2 px-4" onclick="pRev()" id="reviewBox">Reviews</button>
+                        <button class="rounded-full py-2 px-4" id="reviewBox">Reviews</button>
                     </li>
                 </ul>
                 <div class="product-details-tab">
@@ -404,26 +404,51 @@
         </div>
     </section>
     <script>
-        let productDetailTab=document.querySelector(".product-details-tab")
-        let additionalDetailTab=document.querySelector(".additional-details-tab")
-        let reviewDetailTab=document.querySelector(".review-details-tab")
-        additionalDetailTab.style.display="none"
-        reviewDetailTab.style.display="none"
-        let pDesc=()=>{
-            productDetailTab.style.display="block"
-            additionalDetailTab.style.display="none"
-            reviewDetailTab.style.display="none"
-        }
-        let pAddi=()=>{
-            productDetailTab.style.display="none"
-            additionalDetailTab.style.display="block"
-            reviewDetailTab.style.display="none"
-        }
-        let pRev=()=>{
-            productDetailTab.style.display="none"
-            additionalDetailTab.style.display="none"
-            reviewDetailTab.style.display="block"
-        }
+        $(document).ready(function(){
+            let productDetailTab=$(".product-details-tab")
+            let additionalDetailTab=$(".additional-details-tab")
+            let reviewDetailTab=$(".review-details-tab")
+            additionalDetailTab.hide();
+            reviewDetailTab.hide();
+            $("#productDetailBox").click(function(){
+                productDetailTab.show();
+                additionalDetailTab.hide();
+                reviewDetailTab.hide();
+            })
+
+            $("#additionalBox").click(function(){
+                productDetailTab.hide();
+                additionalDetailTab.show();
+                reviewDetailTab.hide();
+            });
+
+            $("#reviewBox").click(function(){
+                productDetailTab.hide();
+                additionalDetailTab.hide();
+                reviewDetailTab.show();
+            });
+            $("#addQty").click(function(){
+                let maxValue=<%=productInfo.productStock%>
+                let currentValue=parseInt($("#currentQty").text())
+                if(maxValue>currentValue){
+                    currentValue=currentValue+1
+                    $("#currentQty").text(currentValue)
+                }else{
+                    alert("Maximum Quantity Reached")
+                }
+            })
+            $("#lessQty").click(function(){
+                let minValue=0
+                let currentValue=parseInt($("#currentQty").text())
+                if(minValue<currentValue){
+                    currentValue=currentValue-1
+                    $("#currentQty").text(currentValue)
+                }else{
+                    alert("Minimum Quantity Reached")
+                }
+            })
+        })
+
     </script>
 </body>
 
