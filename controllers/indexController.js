@@ -1,7 +1,9 @@
 // const express=require('express')
 const db=require('../configs/database')
 const jwt = require('jsonwebtoken')
-const {AdminAuth,ProductCategory,Product,Rating,User}=require('../models/adminSchema')
+const nodemailer = require('nodemailer')
+
+const {AdminAuth,ProductCategory,Cart,Product,Rating,User}=require('../models/adminSchema')
 const request = require('request');
 const index=async(req,res)=>{
     const getProducts=await Product.find({}).populate('productCategory')
@@ -10,6 +12,32 @@ const index=async(req,res)=>{
 const custom=(req,res)=>{
     res.render('custom')
 }
+
+const sendemail=async(getEmail,userId)=>{
+    // const getEmail=req.body.email
+    // let findEmail=await MailerUser.findOne({ email: email })
+    // let findOtpEmail=await OtpUser.findOne({ email: email })
+    // console.log(findOtpEmail)
+    const user=await User.findOne({userEmail:getEmail})
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.yandex.com',
+      port: 465,
+      secure:true,
+      auth: {
+          user: 'rutull009@yandex.com',
+          pass: 'yzthcsusztmwqsqi'
+      }
+    });
+    const info= await transporter.sendMail({
+      from: 'rutull009@yandex.com', // sender address
+      to: getEmail, // list of receivers
+      subject: `Verify Email`,
+      // text: "Hello world?", // plain text body
+      html: `Please Click this link to verify your email address. <br><br> <a href="http://localhost:5500/verify/${userId}" class="verification-link">https://localhost/verify/${userId}</a>`, // html body
+    })
+    
+  }
+
 
 const ratingPost= async(req,res)=>{
     
@@ -80,6 +108,23 @@ const ratingPost= async(req,res)=>{
 }
 
 const product=async(req,res)=>{
+    const userId=req.cookies.logged
+    if(userId){
+        const user=await User.findById(userId)
+        const productId=req.query.id
+        const productInfo=await Product.findById(productId).populate('productCategory')
+        res.render('product',{productInfo,user})
+    }
+    else{
+        const productId=req.query.id
+        const productInfo=await Product.findById(productId).populate('productCategory')
+        let user
+        res.render('product',{productInfo,user})
+    }
+
+
+}
+const addCart=async(req,res)=>{
     const productId=req.query.id
     const productInfo=await Product.findById(productId).populate('productCategory')
     res.render('product',{productInfo})
@@ -139,12 +184,139 @@ const customPost=async(req,res)=>{
 }
 const customGet=async(req,res)=>{
     // req.session.user=encodeURIComponent("6635225fa0f47cce4beda2a1")
-    req.session.user="rutul"
+    // req.session.user="rutul"
     console.log(req.session)
 
 
     res.redirect('/')
 }
+const cartGet=async(req,res)=>{
+    // const userId=req.cookies.logged
+    const userId=req.cookies.logged
+    const getCart=await Cart.find({userId:userId}).populate('productId')
+    if(req.body.chngQty){
+        const cartId=req.body.cartId
+        const quantity=req.body.chngQty
+        console.log(cartId)
+        console.log(quantity)
+        await Cart.updateOne({_id:cartId},{quantity:quantity})
+    }
+    console.log(getCart)
+    res.render('cart',{getCart,userId})
+}
+const addToCart=async(req,res)=>{
+    const productId=req.body.productId
+    const userId=req.body.userId
+    const addCart=new Cart({
+        userId: userId,
+        productId: productId,
+        quantity: req.body.quantity,
+    })
+    await addCart.save()
+    res.json("success")
+}
+const editCart=async(req,res)=>{
+    const productId = req.body.productId
+    const cartId=req.body.cartId
+    if(req.body.chngQty) { 
+        const userId=req.body.userId
+        await Cart.findByIdAndUpdate(cartId,{
+            quantity:req.body.chngQty
+        })
+        res.json("success")
+    }
+}
+const productInfo=async(req, res) =>{
+    // const userId=req.cookies.logged
+    const productId=req.query.id
+    const productInfo=await Product.findById(productId)
+    res.json(productInfo)
+}
+const myAccount=async(req,res)=>{
+    const userId=req.cookies.logged
+    if(userId){
+        const user=await User.findById(userId)
+        console.log(user)
+        res.render('myaccount',{user})
+    }
+    else{
+        res.redirect('/login')
+    }
+}
+const myOrder=async(req,res)=>{
+    const userId=req.cookies.logged
+    if(userId){
+        const user=await User.findById(userId)
+        console.log(user)
+        res.render('myorder',{user})
+    }
+    else{
+        res.redirect('/login')
+    }
+}
+
+const loginGet=async(req, res) =>{
+    const token = req.query.verify;
+    // console.log(token)
+    if(token){
+        const user=await User.findOne({_id:token})
+        if(user){
+            if(user.userStatus==false){
+                user.userStatus = true
+                await user.save()
+                req.flash('success', 'Email is Verified');
+                res.render('login', { success_messages: req.flash('success'), error_messages: req.flash('error') });
+            }
+        }else{
+            req.flash('error', 'Invalid Verification Link.');
+            // console.log(req.flash())
+            res.render('login', { success_messages: req.flash('success'), error_messages: req.flash('error') });
+        }
+    }else{
+        res.render('login');
+    }
+}
+const loginPost=async(req,res)=>{
+    // console.log(req.user)
+    // req.logout(() => {
+    //     // Clear any additional session data or perform other actions
+    //     console.log(req.user)
+    //     res.send('success'); // Redirect to the homepage or any other desired page after logout
+    // });
+    res.cookie("logged",req.user._id.toString())
+    res.redirect('/')
+
+    
+}
+const registerGet=async(req, res) =>{
+    res.render('register')
+}
+const registerPost=async(req, res) =>{
+    try{
+        const newUser=new User({
+            userName:req.body.userName,
+            userEmail:req.body.userEmail,
+            userPassword:req.body.userPassword
+        })
+        await newUser.save()
+        await sendemail(newUser.userEmail, newUser._id);
+        req.flash('success', 'Please Verify Your Email.');
+        res.redirect('back');
+    }catch(error){
+        if (error.name === 'MongoServerError' && error.code === 11000) {
+            req.flash('error', `Username "${req.body.userName}" Already Exists`);
+            res.redirect('back');
+        } else {
+            req.flash('error', 'An error occured.');
+            res.redirect('back');
+        }
+    }
+}
+const verifyToken=async(req,res)=>{
+    const token=req.params.token
+    res.redirect(`/login?verify=${token}`)
+}
+
 const checkSession= async (req, res) => {
     // Check if the session user exists
     res.send(req.session);
@@ -164,7 +336,7 @@ const mongooseQueryPost= async(req,res)=>{
         const getQuery=req.body.queryData
         const result = await eval(getQuery)
         // console.log(JSON.stringify(result, null, 2)) //only console.log(result) will give wrapped result of object and array
-        console.dir(result)
+        console.log(result)
         res.json(result)
     } catch (error) {
         console.error(error); // Log the error for debugging
@@ -182,6 +354,18 @@ module.exports={
     customGet,
     checkSession,
     product,
+    cartGet,
+    addToCart,
+    productInfo,
+    loginGet,
+    loginPost,
+    editCart,
+    registerGet,
+    registerPost,
+    verifyToken,
+    myAccount,
+    myOrder,
     mongooseQueryGet,
-    mongooseQueryPost
+    mongooseQueryPost,
+    
 }

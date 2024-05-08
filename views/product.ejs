@@ -4,7 +4,8 @@
     <%-include('head')-%>
 </head>
 <body>
-
+    <%-include('header')%>
+    <br>
     <!--https://nest-frontend-v6.netlify.app/-->
     <section class="container mx-auto flex" id="productPage">
         <div class="flex flex-col w-3/4">
@@ -43,7 +44,7 @@
                             <%=productInfo.productDescription%>
                         </p>
                     </div>
-                    <div class="size-box flex items-center mt-5 text-sm">
+                    <!-- <div class="size-box flex items-center mt-5 text-sm">
                         <div class="size-title">
                             <p class="font-semibold text-slate-500">Size/Weight:</p>
                         </div>
@@ -67,28 +68,37 @@
                                 </li>
                             </form>
                         </ul>
-                    </div>
-                    <div class="counter-and-cart mt-5 flex items-center gap-5">
-                        <div class="counter-box flex border w-20 rounded-md px-1">
-                            <div class="add-count flex justify-center items-center flex-1">
-                                <span id="currentQty" class="text-xl font-medium">1</span>
-                            </div>
-                            <div class="up-down flex flex-col justify-between items-center">
-                                <div class="up-arrow p-0 m-0 text-xl">
-                                    <button id="addQty"><i class='bx bxs-up-arrow-square' ></i></button>
+                    </div> -->
+                    <%if (user){%>
+                        <div class="counter-and-cart mt-5 flex items-center gap-5">
+                            <div class="counter-box flex border w-20 rounded-md px-1">
+                                <div class="add-count flex justify-center items-center flex-1">
+                                    <span id="currentQty" class="text-xl font-medium">1</span>
                                 </div>
-                                <div class="down-arrow p-0 m-0 text-xl">
-                                    <button id="lessQty"><i class='bx bxs-down-arrow-square' ></i></button>
+                                <div class="up-down flex flex-col justify-between items-center">
+                                    <div class="up-arrow p-0 m-0 text-xl">
+                                        <button id="addQty"><i class='bx bxs-up-arrow-square' ></i></button>
+                                    </div>
+                                    <div class="down-arrow p-0 m-0 text-xl">
+                                        <button id="lessQty"><i class='bx bxs-down-arrow-square' ></i></button>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="add-to-cart h-full">
+                                <button type="button" id="addToCart" data-user-id="<%=user._id%>" class="hover h-full p-4 font-semibold rounded-md"><i class='bx bx-cart-alt' ></i> 
+                                    Add to cart
+                                </button>
+                            </div>
+                            <div class="add-wishlist">
+                                <button class="p-4 border rounded-md"><i class='bx bx-heart'></i></button>
+                            </div>
                         </div>
-                        <div class="add-to-cart h-full">
-                            <button class="h-full p-4 font-semibold rounded-md"><i class='bx bx-cart-alt' ></i> Add to cart</button>
+                    <%}else{%>
+                        <div class="bg-red-200 w-full mt-5 flex items-center text-gray-900 rounded-lg p-4 alert" role="alert">
+                            <span class="font-medium">Please <a href="/login" class="font-bold text-orange-700">Login</a> to add this item into cart</span>
                         </div>
-                        <div class="add-wishlist">
-                            <button class="p-4 border rounded-md"><i class='bx bx-heart'></i></button>
-                        </div>
-                    </div>
+                    <%}%>
+                    
                     <div class="product-extra-spec mt-5">
                         <table class="table-auto w-4/5 text-sm font-medium text-slate-500">
                             <tr>
@@ -261,9 +271,11 @@
                             <div class="add-review">
                                 <h5 class="font-bold text-xl my-5">Add a Review</h5>
                                 <form action="" class="mt-5 grid grid-cols-2 gap-5">
+                                    
                                     <textarea name="" placeholder="Write Review" rows="5" class="col-span-2 border p-3"></textarea>
                                     <input type="text" placeholder="Enter Your Name" class="col-span-1 border p-3">
                                     <input type="text" placeholder="Enter Your Email" class="col-span-1 border p-3">
+                                    
                                     <div class="w-40">
                                         <button class="font-semibold w-full p-3">Submit</button>
                                     </div>
@@ -408,8 +420,9 @@
             let productDetailTab=$(".product-details-tab")
             let additionalDetailTab=$(".additional-details-tab")
             let reviewDetailTab=$(".review-details-tab")
+            productDetailTab.hide()
             additionalDetailTab.hide();
-            reviewDetailTab.hide();
+            // reviewDetailTab.hide();
             $("#productDetailBox").click(function(){
                 productDetailTab.show();
                 additionalDetailTab.hide();
@@ -447,6 +460,30 @@
                     alert("Minimum Quantity Reached")
                 }
             })
+            $("#addToCart").click(function() {
+                const currQty=$("#currentQty").text()
+                let userId = $(this).data("user-id");
+            $.ajax({
+                url: "/add-to-cart",
+                type: "POST",
+                data: {
+                    userId:userId,
+                    productId:"<%=productInfo._id%>",
+                    quantity: currQty
+                },
+                    success: function(data) {
+                    console.log(data);
+                },
+                    error: function(err) {
+                    console.log(err);
+                }
+            });
+
+                $("#cartCounter").text(parseInt($("#cartCounter").text()) + 1);
+                $(this).prop("disabled", true);
+                $(this).toggleClass("hover", false);
+            });
+
         })
 
     </script>

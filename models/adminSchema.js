@@ -121,36 +121,52 @@ const productSchema = new mongoose.Schema({
         type: [ratingSchema] // Array of Rating subdocuments
     }
 });
-
+const cartSchema=mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    productId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+        required: true
+    },
+    quantity: {
+        type: Number,
+        required: true,
+        min: 1
+    }
+})
 const userSchema=mongoose.Schema({
     userName:{
         type:String,
+        required:true,
+        unique:true,
+        index:true
+    },
+    userEmail:{
+        type:String,
+        required:true,
+
+    },
+    userPassword:{
+        type:String,
         required:true
     },
-    // userEmail:{
-    //     type:String,
-    //     required:true
-    // },
-    // userPassword:{
-    //     type:String,
-    //     required:true
-    // },
-    // userAddress:{
-    //     type:String,
-    //     required:true
-    // },
-    // userPhone:{
-    //     type:String,
-    //     required:true
-    // },
-    // userImage:{
-    //     type:String,
-    //     required:true
-    // },
-    // userStatus:{
-    //     type:String,
-    //     required:true
-    // },
+    userAddress:{
+        type:String
+    },
+    userPhone:{
+        type:String
+    },
+    userImage:{
+        type:String
+    },
+    userStatus:{
+        type: Boolean,
+        default: false,
+    },
     
 })
 const AdminAuth=mongoose.model("AdminAuth",adminAuth)
@@ -158,11 +174,14 @@ const ProductCategory=mongoose.model("ProductCategory",productCategory)
 const Product=mongoose.model("Product",productSchema)
 const Rating=mongoose.model("Rating",ratingSchema)
 const User=mongoose.model("User",userSchema)
+const Cart=mongoose.model("Cart",cartSchema)
+
 module.exports={
     AdminAuth,
     ProductCategory,
     Product,
     Rating,
-    User
+    User,
+    Cart
 
 }

@@ -81,6 +81,15 @@ header .header-bottom li:hover .dropdown {
   transform: translateY(0px);
 }
 
+.top-bar button {
+  background-color: #3BB77E;
+  color: white;
+  transition: 0.2s;
+}
+.top-bar button:hover {
+  background-color: #309968;
+}
+
 #bannerSection .banner img {
   transition: 0.2s;
 }
@@ -444,7 +453,7 @@ header .header-bottom li:hover .dropdown {
   color: white;
   transition: 0.2s;
 }
-#productPage .product-catalog .counter-and-cart .add-to-cart button:hover {
+#productPage .product-catalog .counter-and-cart .add-to-cart .hover:hover {
   background-color: #2f9465;
 }
 #productPage .product-catalog .product-extra-spec span {
@@ -486,6 +495,12 @@ header .header-bottom li:hover .dropdown {
 #productPage .product-detail-container .review-details-tab .add-review button {
   background-color: #3BB77E;
   color: white;
+}
+#productPage .product-detail-container .review-details-tab .add-review .review-star-box i {
+  color: rgb(197, 197, 197);
+}
+#productPage .product-detail-container .review-details-tab .add-review .review-star-box i:hover, #productPage .product-detail-container .review-details-tab .add-review .review-star-box i:hover ~ i {
+  color: #f0c040;
 }
 #productPage .product-category h1 {
   border-bottom: 2px solid rgb(119, 201, 163);

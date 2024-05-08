@@ -3,6 +3,7 @@ const app=express()
 const PORT=process.env.PORT||5500
 const jwt = require('jsonwebtoken')
 const path=require('path')
+const {AdminAuth,ProductCategory,Cart,Product,Rating,User}=require('./models/adminSchema')
 const browserSync = require('browser-sync');
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -41,6 +42,20 @@ app.use(function(req, res, next) {
     res.locals.error_messages2 = req.flash('error2');
     next();
 });
+app.use(async (req, res, next) => {
+    // console.log(res.locals.user)
+    try {
+      const userId=req.cookies.logged
+    //   const user = await User.findOne({_id:userId})
+      const getCart=await Cart.countDocuments({userId:userId})
+    //   res.locals.user = user; // Add user information to response locals
+      res.locals.cartCount=getCart;
+      console.log(res.locals.cartCount);
+      next();
+    } catch (error) {
+      next(error);
+    }
+  });
 
 const bs = browserSync.create();
 bs.init({

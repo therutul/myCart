@@ -96,3 +96,13 @@ header{
         }
     }
 }
+.top-bar{
+    button{
+        background-color: #3BB77E;
+        color: white;
+        transition: 0.2s;
+        &:hover{
+            background-color: #309968;
+        }
+    }
+}

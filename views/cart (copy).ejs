@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%-include('head')-%>
+</head>
+<body>
+    <%-include('header')%>
+    <br>
+  <section class="container mx-auto" id="productCart">
+    <h1 class="text-4xl font-bold">Your Cart</h1>
+    <p class="text-sm font-semibold text-slate-500">There are <span class="font-bold">3</span> products in your cart</p>
+    <div class="cart-container flex gap-5">
+      <div class="w-3/4">
+        <table class="table-auto w-full border">
+          <thead>
+            <tr class="bg-slate-200">
+              <th>Sr</th>
+              <th>Product</th>
+              <th>Unit Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr class="border-b">
+              <td class="w-12">
+                1
+              </td>
+              <td class="w-1/2">
+                <div class="cart-product flex text-left py-5 gap-8">
+                  <div class="cart-image border rounded-lg overflow-hidden">
+                    <img src="img/product-1-1.jpg" alt="" class="w-28">
+                  </div>
+                  <div class="cart-product-detail flex flex-col justify-center">
+                    <a href="" class="font-semibold text-sm">Field roast chaos cheese spicy oil</a>
+                    <div class="rating-box text-sm">
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i>(4.5)</i>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="cart-price">
+                  <h2 class="font-bold text-xl">$3.99</h2>
+                </div>
+              </td>
+              <td class="">
+                <div class="counter-and-cart">
+                  <div class="counter-box flex border w-20 mx-auto rounded-md px-1">
+                      <div class="add-count flex justify-center items-center flex-1">
+                          <span class="text-xl font-medium">11</span>
+                      </div>
+                      <div class="up-down flex flex-col justify-between items-center">
+                          <div class="up-arrow p-0 m-0 text-xl">
+                              <button><i class='bx bxs-up-arrow-square' ></i></button>
+                          </div>
+                          <div class="down-arrow p-0 m-0 text-xl">
+                              <button><i class='bx bxs-down-arrow-square' ></i></button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </td>
+              <td>
+                <div class="cart-subtotal">
+                  <h2 class="font-bold text-xl">$3.99</h2>
+                </div>
+              </td>
+              <td class="w-24">
+                <div class="cart-trash">
+                  <button><i class='bx bxs-trash' ></i></button>
+                </div>
+              </td>
+            </tr>
+
+            <tr class="border-b">
+              <td class="w-12">
+                1
+              </td>
+              <td class="w-1/2">
+                <div class="cart-product flex text-left py-5 gap-8">
+                  <div class="cart-image border rounded-lg overflow-hidden">
+                    <img src="img/product-1-1.jpg" alt="" class="w-28">
+                  </div>
+                  <div class="cart-product-detail flex flex-col justify-center">
+                    <a href="" class="font-semibold text-sm">Field roast chaos cheese spicy oil</a>
+                    <div class="rating-box text-sm">
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i>(4.5)</i>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="cart-price">
+                  <h2 class="font-bold text-xl">$3.99</h2>
+                </div>
+              </td>
+              <td class="">
+                <div class="counter-and-cart">
+                  <div class="counter-box flex border w-20 mx-auto rounded-md px-1">
+                      <div class="add-count flex justify-center items-center flex-1">
+                          <span class="text-xl font-medium">11</span>
+                      </div>
+                      <div class="up-down flex flex-col justify-between items-center">
+                          <div class="up-arrow p-0 m-0 text-xl">
+                              <button><i class='bx bxs-up-arrow-square' ></i></button>
+                          </div>
+                          <div class="down-arrow p-0 m-0 text-xl">
+                              <button><i class='bx bxs-down-arrow-square' ></i></button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </td>
+              <td>
+                <div class="cart-subtotal">
+                  <h2 class="font-bold text-xl">$3.99</h2>
+                </div>
+              </td>
+              <td class="w-24">
+                <div class="cart-trash">
+                  <button><i class='bx bxs-trash' ></i></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="w-1/4">
+        <ul class="">
+          <li>
+            <h3 class="text-slate-500 font-semibold">Subtotal</h3>
+            <h2 class="font-bold text-2xl">$12.31</h2>
+          </li>
+          <li>
+            <h3 class="text-slate-500 font-semibold">Shipping</h3>
+            <h2 class="font-bold text-sm">Free</h2>
+          </li>
+          <li>
+            <h3 class="text-slate-500 font-semibold">Gst (18%)</h3>
+            <h2 class="font-bold text-sm">0.2$</h2>
+          </li>
+          <li>
+            <h3 class="text-slate-500 font-semibold">Total</h3>
+            <h2 class="font-bold text-2xl">$12.51</h2>
+          </li>
+          <li>
+            <button class="font-semibold rounded">Proceed To Checkout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

@@ -50,6 +50,9 @@
                     background-color: #3BB77E;
                     color: white;
                     transition: 0.2s;
+                    
+                }
+                .hover{
                     &:hover{
                         background-color: #2f9465;
                     }
@@ -119,6 +122,16 @@
                 button{
                     background-color: #3BB77E;
                     color: white;
+                }
+                .review-star-box{
+                    i{
+                        color:rgb(197, 197, 197);
+                        &:hover,
+                        &:hover ~ i {
+                        color: #f0c040; // Hover color for selected stars
+                        }
+                    }
+
                 }
             }
         }
