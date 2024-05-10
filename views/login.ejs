@@ -6,7 +6,7 @@
 <body>
     <!--https://nest-frontend-v6.netlify.app/-->
     <%-include('header')%>
-  <section class="container border flex mx-auto" id="loginPage">
+  <section class="container flex mx-auto" id="loginPage">
     <div class="w-1/2 flex flex-col items-center justify-center">
       <img src="img/Login-bro.svg" alt="">
     </div>
@@ -27,8 +27,8 @@
       <h5 class="text-slate-500 text-sm mt-3 font-semibold">Don't have an account? <a href="/register">Create here</a></h5>
       <form action="/login" method="POST" class="w-full">
         <br>
-        <input name="username" autocomplete="off" type="text" class="border w-3/4 p-3" placeholder="Username or Email *"><br><br>
-        <input name="password" autocomplete="off" type="text" class="border w-3/4 p-3" placeholder="Password *"><br><br>
+        <input name="username" autocomplete="off" type="text" class="border w-3/4 p-3" placeholder="Username *"><br><br>
+        <input name="password" autocomplete="off" type="password" class="border w-3/4 p-3" placeholder="Password *"><br><br>
         <input type="checkbox"> <label class="text-slate-500 text-sm font-medium" for="">Remember me</label><br><br>
         <button class="rounded py-3 w-32">Login</button>
         <br><br>

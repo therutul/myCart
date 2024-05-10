@@ -1,5 +1,6 @@
 const express=require('express')
 const app=express()
+require('dotenv').config();
 const PORT=process.env.PORT||5500
 const jwt = require('jsonwebtoken')
 const path=require('path')
@@ -15,6 +16,7 @@ const hcaptcha = require('express-hcaptcha');
 const indexRouter=require('./routes/indexRoute')
 const adminRouter=require('./routes/adminRoute')
 const SECRET = "ES_7c79db34efb9474faf7972d1321876ac";
+
 
 
 
@@ -47,7 +49,7 @@ app.use(async (req, res, next) => {
     try {
       const userId=req.cookies.logged
     //   const user = await User.findOne({_id:userId})
-      const getCart=await Cart.countDocuments({userId:userId})
+      const getCart=await Cart.countDocuments({userId:userId,isPaid:false})
     //   res.locals.user = user; // Add user information to response locals
       res.locals.cartCount=getCart;
       console.log(res.locals.cartCount);

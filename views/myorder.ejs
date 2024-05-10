@@ -5,19 +5,93 @@
 </head>
 <body>
   <%-include('header')%>
-  <section class="container mx-auto" id="checkout">
-    <div class="top-bar flex justify-center items-center flex-col">
-      <h1 class="text-4xl mt-4 font-bold">Welcome, <%=user.userName%></h1>
-      <div class="btn-group mt-5">
-        <button class="font-semibold text-xl rounded w-40 h-40"><a href="">My Orders</a></button>
-        <button class="font-semibold text-xl rounded w-40 h-40"><a href="">My Profile</a></button>
-      </div>
-      <div class="btn-group mt-1">
-        <button class="font-semibold text-xl rounded w-40 h-40"><a href="">Track Order</a></button>
-        <button class="font-semibold text-xl rounded w-40 h-40"><a href="">Logout</a></button>
+  <section class="container mx-auto" id="productCart">
+    <h1 class="text-4xl font-bold my-4">My Orders</h1>
+    <div class="cart-container flex gap-5">
+      <div class="w-full">
+        <table class="table-auto w-full border">
+          <thead>
+            <tr class="bg-slate-200">
+              <th>Sr</th>
+              <th>Product</th>
+              <th>Unit Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+              <th>TAX</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <% var subtotal=0%>
+            <%getCart.forEach((productInfo,index)=>{%>
+              <tr class="border-b">
+                <td class="w-12">
+                  <%=index+1%>
+                </td>
+                <td class="w-1/2">
+                  <div class="cart-product flex text-left py-5 gap-8">
+                    <div class="cart-image border rounded-lg overflow-hidden">
+                      <img src="/productimg/<%=productInfo.productId.productImages[0]%>" alt="" class="w-28">
+                    </div>
+                    <div class="cart-product-detail flex flex-col justify-center">
+                      <a href="" class="font-semibold text-sm">
+                        <%=productInfo.productId.productName%>
+                      </a>
+                      <div class="rating-box text-sm">
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i>(4.5)</i>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="cart-price">
+                    <h2 class="font-bold text-xl">
+                      $<%= (productInfo.productId.productPrice - (productInfo.productId.productPrice * productInfo.productId.productDiscount / 100)).toFixed(2) %>
+                    </h2>
+                  </div>
+                </td>
+                <td>
+                  <div class="cart-qty">
+                    <p class="text-slate-500 font-semibold text-xl">x <%=productInfo.quantity%></p>
+                  </div>
+                </td>
+                <td>
+                  <div class="cart-price">
+                    <h2 class="font-bold text-xl">
+                      $<%= (parseFloat(productInfo.productId.productPrice - (productInfo.productId.productPrice * productInfo.productId.productDiscount / 100)) * parseFloat(productInfo.quantity)).toFixed(2) %>
+                    </h2>
+                  </div>
+                </td>
+                <td>
+                  <div class="cart-subtotal">
+                    <h2 class="font-bold text-xl">
+                      $<%= ((productInfo.productId.productPrice - (productInfo.productId.productPrice * productInfo.productId.productDiscount / 100)) * 0.18*productInfo.quantity).toFixed(2) %>
+                      
+                    </h2>
+                  </div>
+                </td>
+                <td>
+                  <div class="cart-subtotal">
+                    <h2 class="font-bold text-xl">
+                      $<%= (parseFloat(((productInfo.productId.productPrice - (productInfo.productId.productPrice * productInfo.productId.productDiscount / 100)) * productInfo.quantity) + ((productInfo.productId.productPrice - (productInfo.productId.productPrice * productInfo.productId.productDiscount / 100)) * 0.18 * productInfo.quantity)).toFixed(2)) %>
+
+                    </h2>
+                  </div>
+                </td>
+                
+              </tr>
+            <%})%>  
+
+            
+          </tbody>
+        </table>
       </div>
     </div>
-    
   </section>
 
   

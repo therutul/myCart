@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./assets/libs/prismjs/themes/prism-okaidia.min.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon/favicon.ico" />
+    <!-- Libs CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="./assets/libs/simplebar/dist/simplebar.min.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="./assets/css/theme.min.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Documentation - TailwindCSS HTML Admin Template Free - Dash UI" />
+    <title>Documentation - TailwindCSS HTML Admin Template Free - Dash UI</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <main>
+      <!-- start introduction -->
+      <!-- app layout -->
+      <div id="app-layout" class="overflow-x-hidden flex">
+        <!-- start navbar -->
+        <%-include('sidebar')-%>
+        <!--end of navbar-->
+        <!-- app layout content -->
+        <div id="app-layout-content" class="min-h-screen w-full min-w-[100vw] md:min-w-0 ml-[15.625rem] [transition:margin_0.25s_ease-out]">
+          <!-- start navbar -->
+          <%-include('header')-%>
+          <!-- end of navbar -->
+          <div class="p-6">
+            <div class="flex">
+              <div class="grid grid-cols-2 gap-6 w-full">
+                <div class="card shadow ">
+                  <div class="card-body">
+                    
+                    <form action="./add-product-type" method="post">
+                      <h4 class="border-b">Add Product Type</h4>
+                    <select autocomplete="off" name="productCategory" class="mt-5 py-2 px-4 pe-9 block w-full border-gray-300 rounded focus:border-indigo-600 focus:ring-indigo-600 disabled:opacity-50 disabled:pointer-events-none">
+                      <option selected>Select Product Category</option>
+                      <%renderCategory.forEach(category=>{%>
+                        <option value="<%=category._id%>"><%=category.categoryName%></option>
+                      <%})%>
+                    </select>
+
+                    <label class="mt-4 block text-gray-800">Product Type</label>
+                    <input  autocomplete="off" name="productType" placeholder="Enter Product Type" type="text" class="mt-2 border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none" />
+
+                    <div class="flex items-center gap-2 mt-4">
+                      <input value="Add" id="addCategory" type="submit" class="btn gap-x-2 bg-teal-600 text-white border-teal-600 disabled:opacity-50 disabled:pointer-events-none hover:text-white hover:bg-teal-700 hover:border-teal-700 active:bg-teal-700 active:border-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300">
+                      <div class="animate-spin hidden w-4 h-4 border-[3px] border-current border-t-transparent text-green-600 rounded-full " role="status" aria-label="loading">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                    
+                    <% if (success_messages.length > 0) { %>
+                      <div class="bg-teal-200 mt-5 flex items-center w-full text-gray-900 rounded-lg p-4 alert" role="alert">
+                        <span><span class="font-bold">Success:</span> <%= success_messages[0] %></span>
+                        <button type="button" class="btn-close ms-auto -mx-1.5 -my-1.5 text-gray-900 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 " data-bs-dismiss="alert" aria-label="Close">
+                          <span class="sr-only">Close</span>
+                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                          </svg>
+                        </button>
+                      </div>
+                    <% } %>
+
+                    <% if (error_messages.length > 0) { %>
+                      <div class="bg-red-200 mt-5 flex items-center w-full text-gray-900 rounded-lg p-4 alert" role="alert">
+                        <span><span class="font-bold">Error:</span> <%= error_messages[0] %></span>
+                        <button type="button" class="btn-close ms-auto -mx-1.5 -my-1.5 text-gray-900 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 " data-bs-dismiss="alert" aria-label="Close">
+                          <span class="sr-only">Close</span>
+                          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                          </svg>
+                        </button>
+                      </div>
+                    <% } %>
+                    </form>
+                  </div>
+                </div> 
+                <div class="card shadow">
+                  <div class="card-body">
+                    <h4 class="border-b">View Product Type</h4>
+                      <select id="catType" autocomplete="off" name="viewproductCategory" class="mt-5 py-2 px-4 pe-9 block w-full border-gray-300 rounded focus:border-indigo-600 focus:ring-indigo-600 disabled:opacity-50 disabled:pointer-events-none">
+                        <option selected>Select Product Category</option>
+                        <%renderCategory.forEach(category=>{%>
+                          <option value="<%=category._id%>"><%=category.categoryName%></option>
+                        <%})%>
+                      </select>
+
+                      <select id="viewType" autocomplete="off" name="viewproductType" class="mt-5 py-2 px-4 pe-9 block w-full border-gray-300 rounded focus:border-indigo-600 focus:ring-indigo-600 disabled:opacity-50 disabled:pointer-events-none">
+                        <option selected>Select Product Type</option>
+                        
+                      </select>
+                        <% if (success_messages2.length > 0) { %>
+                          <div class="bg-teal-200 mt-5 flex items-center w-full text-gray-900 rounded-lg p-4 alert" role="alert">
+                            <span><span class="font-bold">Success:</span> <%= success_messages2[0] %></span>
+                            <button type="button" class="btn-close ms-auto -mx-1.5 -my-1.5 text-gray-900 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 " data-bs-dismiss="alert" aria-label="Close">
+                              <span class="sr-only">Close</span>
+                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                              </svg>
+                            </button>
+                          </div>
+                        <% } %>
+    
+                        <% if (error_messages2.length > 0) { %>
+                          <div class="bg-red-200 mt-5 flex items-center w-full text-gray-900 rounded-lg p-4 alert" role="alert">
+                            <span><span class="font-bold">Error:</span> <%= error_messages2[0] %></span>
+                            <button type="button" class="btn-close ms-auto -mx-1.5 -my-1.5 text-gray-900 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 " data-bs-dismiss="alert" aria-label="Close">
+                              <span class="sr-only">Close</span>
+                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                              </svg>
+                            </button>
+                          </div>
+                        <% } %>
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+          <%-include('footer')-%>
+        </div>
+      </div>
+      <!-- end of introduction -->
+    </main>
+    <!-- Libs JS -->
+    <script src="./assets/libs/feather-icons/dist/feather.min.js"></script>
+    <script src="./assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <!-- Theme JS -->
+    <script src="./assets/js/theme.min.js"></script>
+    <script src="./assets/libs/prismjs/prism.js"></script>
+    <script src="./assets/libs/prismjs/components/prism-scss.min.js"></script>
+    <script src="./assets/libs/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="./assets/libs/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#catType").change(function() {
+          $.ajax({
+              url: "/admin/viewtype",
+              method: "POST",
+              data: {
+                  productCategory: $("#catType").val()
+              },
+              success: function(data) {
+                  $("#viewType").empty();
+                  $("#viewType").append("<option selected>Select Product Type</option>")
+                  // Append new options based on the fetched data
+                  data.forEach(type=> {
+                    $("#viewType").append(`<option value=${type._id}>${type.type}</option>`);
+                  }); 
+                  console.log(data);
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                  console.error("AJAX Error:", textStatus, errorThrown);
+                  // Display an error message to the user (optional)
+                  $("#viewType").html("Error loading view type. Please try again.");
+              }
+          });
+        });
+
+      });
+
+    </script>
+  </body>
+</html>

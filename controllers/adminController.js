@@ -1,11 +1,19 @@
 // const express=require('express')
 const db=require('../configs/database')
-const {AdminAuth,ProductCategory,Product}=require('../models/adminSchema')
+const {AdminAuth,ProductCategory,Cart,Product,Rating,User,ProductType}=require('../models/adminSchema')
 const request = require('request');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
-const index=(req,res)=>{
-    res.render('admin/index')
+const index=async(req,res)=>{
+    const user=await User.find({})
+    const product=await Product.find({}).populate('productCategory')
+    const cart=await Cart.find({})
+    const category=await ProductCategory.find({})
+    const userCount=await User.countDocuments({})
+    const productCount=await Product.countDocuments({})
+    const cartCount=await Cart.countDocuments({isPaid:true})
+    const categoryCount=await ProductCategory.countDocuments({})
+    res.render('admin/index',{user,product,cart,category,userCount,productCount,cartCount,categoryCount})
 }
 const signin=(req,res)=>{
     res.render('admin/signin')
@@ -160,19 +168,47 @@ const addProductPost= async (req,res)=>{
     res.redirect('back')
 }
 const orders= async (req,res)=>{
-    res.render('admin/orders')
+    const getOrders=await Cart.find({}).populate('userId').populate('productId');
+    console.log(getOrders)
+    res.render('admin/orders',{getOrders})
 }
 const products= async (req,res)=>{
     if(req.query.view){
-        const getProducts=await Product.findById(req.query.view)
+        const getProducts=await Product.findById(req.query.view).populate('productType')
         const renderCategory=await ProductCategory.find({})
         const selectedCategoryId = getProducts.productCategory
+        // const productType = await Product.findById(req.query.view).populate('productType')
+        // console.log(productType)
         // console.log(selectedCategoryId)
         return res.render('admin/productpage',{getProducts,renderCategory,selectedCategoryId})
         
     }
     const getProducts=await Product.find({})
     res.render('admin/productlist',{getProducts})
+}
+const addProductType=async(req,res)=>{
+    const renderCategory=await ProductCategory.find({})
+    const productType = await ProductType.find({}).populate('productCategory')
+    // console.log(productType)
+    // const productType = await ProductType.find({}).populate('productCategory.categoryName': 'Clothing');
+    // const productType =  await ProductType.find({}).populate('productCategory',{'productCategory.categoryName': 'Clothing'})
+    // const productType = await ProductType.find({ productCategory: "66350501cc194d21f0884249"}).populate('productCategory');
+    console.log(productType)
+    res.render('admin/add-product-type',{renderCategory,productType})
+}
+const addProductTypePost=async(req,res)=>{
+    const newProductType=new ProductType({
+        type:req.body.productType,
+        productCategory:req.body.productCategory
+    })
+    await newProductType.save()
+    req.flash('success', 'Product Type Added Successfully');
+    res.redirect('back')
+}
+const viewProductType=async(req,res)=>{
+    const productType = await ProductType.find({ productCategory: req.body.productCategory}).populate('productCategory');
+    console.log(req.body.productCategory)
+    res.json(productType)
 }
 const editProduct= async (req,res)=>{
     console.log("im here")
@@ -253,5 +289,8 @@ module.exports={
     orders,
     products,
     addProductPost,
-    editProduct
+    editProduct,
+    addProductType,
+    addProductTypePost,
+    viewProductType
 }

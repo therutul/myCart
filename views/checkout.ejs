@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%-include('head')-%>
+</head>
+<body>
+  <%-include('header')%>
+  <section class="container mx-auto" id="checkout">
+    <h1 class="text-4xl font-bold mt-4">Your Cart</h1>
+    <p class="text-sm font-semibold text-slate-500">There are <span class="font-bold">3</span> products in your cart</p>
+    <div class="checkout-container flex gap-5">
+      <div class="w-1/2">
+        
+        <div class="billing-box mt-4">
+          <h1 class="font-bold text-xl">Billing Details</h1>
+          <form action="" method="POST">
+            <label class="mt-4 block text-gray-800">Full Name</label>
+            <input autocomplete="off" name="dfName" placeholder="Enter Your Name" type="text" class="mt-2 border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none" />
+            <label class="mt-4 block text-gray-800">Mobile No.</label>
+            <input autocomplete="off" name="dMno" placeholder="Enter Your Mobile No." type="text" class="mt-2 border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none" />
+            <label class="mt-4 block text-gray-800">Delivery Address</label>
+            <textarea autocomplete="off" name="dAddress" placeholder="Enter Your Address" type="text" class="mt-2 border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2 px-3 disabled:opacity-50 disabled:pointer-events-none"></textarea>  
+          </form>
+        </div>
+      </div>
+      <div class="w-1/2 border p-5 rounded-lg">
+        <h1 class="text-3xl font-bold">Your Order</h1>
+        <table class="table-auto w-full mt-5">
+          <tbody class="text-center">
+            <% var subtotal=0%>
+            <%getCart.forEach((productInfo,index)=>{%>
+            <tr class="border-b">
+              <td class="w-2/3">
+                <div class="cart-product flex text-left py-5 gap-2">
+                  <div class="cart-image border rounded-lg overflow-hidden">
+                    <img src="/productimg/<%=productInfo.productId.productImages[0]%>" alt="" class="w-28">
+                  </div>
+                  <div class="cart-product-detail flex flex-col justify-center">
+                    <a href="" class="font-semibold text-sm">
+                      <%=productInfo.productId.productName%>
+                    </a>
+                    <div class="rating-box text-xs">
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i class='bx bxs-star'></i>
+                      <i>(4.5)</i>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="cart-qty">
+                  <p class="text-slate-500 font-semibold text-sm">x <%=productInfo.quantity%></p>
+                </div>
+              </td>
+              <td class="">
+                <div class="cart-subtotal">
+                  <h2 class="font-bold text-xl  text-end">
+                    $<%= (parseFloat(productInfo.productId.productPrice - (productInfo.productId.productPrice * productInfo.productId.productDiscount / 100)) * parseFloat(productInfo.quantity)).toFixed(2) %>
+                    <% subtotal= parseFloat(subtotal) + parseFloat(productInfo.productId.productPrice-(productInfo.productId.productPrice)*productInfo.productId.productDiscount/100) * parseFloat(productInfo.quantity)%>
+                  </h2>
+                </div>
+              </td>
+            </tr>
+            <%})%>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="" class="">
+                <h3 class="font-semibold text-xl">Total (with GST):</h3>
+              </td>
+              <td colspan="2" class="">
+                <h4 class="font-bold text-xl  text-end">
+                  $<%=parseFloat(subtotal + subtotal* 18/100).toFixed(2)%>
+                </h4>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="payment-button mt-3">
+          <form action="/checkout" method="POST">
+            <input type="hidden" name="cartId" value="<%=getCart[0]._id%>">
+            <button type="submit" class="font-semibold rounded">Payment</button>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <footer class="my-4 flex justify-center items-center px-5">
+    <p class="text-center">© 2024, Nest - HTML Ecommerce Template </p>
+    <ul class="flex gap-3 ms-auto">
+        <li>
+            <a href="">Home</a>
+        </li>
+        <li>
+            <a href="">My Account</a>
+        </li>
+        <li>
+            <a href="">Tracking</a>
+        </li>
+        <li>
+            <a href="">Help</a>
+        </li>
+    </ul>
+</footer>
+</body>
+</html>

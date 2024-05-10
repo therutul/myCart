@@ -8,8 +8,7 @@
     <br>
   <section class="container mx-auto" id="productCart">
     <h1 class="text-4xl font-bold">Your Cart</h1>
-    <p class="text-sm font-semibold text-slate-500">There are <span class="font-bold">3</span> products in your cart</p>
-    <div class="cart-container flex gap-5">
+    <div class="cart-container mt-4 flex gap-5">
       <div class="w-3/4">
         <table class="table-auto w-full border">
           <thead>
@@ -52,7 +51,7 @@
                 <td>
                   <div class="cart-price">
                     <h2 class="font-bold text-xl">
-                      $<%= (productInfo.productId.productPrice - (productInfo.productId.productPrice * productInfo.productId.productDiscount / 100)).toFixed(2) %>
+                      ₹<%= (productInfo.productId.productPrice - (productInfo.productId.productPrice * productInfo.productId.productDiscount / 100)).toFixed(2) %>
                     </h2>
                   </div>
                 </td>
@@ -78,14 +77,14 @@
                 <td>
                   <div class="cart-subtotal">
                     <h2 class="font-bold text-xl">
-                      $<%= (parseFloat(productInfo.productId.productPrice - (productInfo.productId.productPrice * productInfo.productId.productDiscount / 100)) * parseFloat(productInfo.quantity)).toFixed(2) %>
+                      ₹<%= (parseFloat(productInfo.productId.productPrice - (productInfo.productId.productPrice * productInfo.productId.productDiscount / 100)) * parseFloat(productInfo.quantity)).toFixed(2) %>
                       <% subtotal= parseFloat(subtotal) + parseFloat(productInfo.productId.productPrice-(productInfo.productId.productPrice)*productInfo.productId.productDiscount/100) * parseFloat(productInfo.quantity)%>
                     </h2>
                   </div>
                 </td>
                 <td class="w-24">
                   <div class="cart-trash">
-                    <button><i class='bx bxs-trash' ></i></button>
+                    <button id="removeCart" data-user-id="<%=userId%>" data-cart-id="<%=productInfo._id%>"><i class='bx bxs-trash' ></i></button>
                   </div>
                 </td>
               </tr>
@@ -99,7 +98,7 @@
         <ul class="">
           <li>
             <h3 class="text-slate-500 font-semibold">Subtotal</h3>
-            <h2 class="font-bold text-2xl">$<%= subtotal.toFixed(2)%></h2>
+            <h2 class="font-bold text-2xl">₹<%= subtotal.toFixed(2)%></h2>
           </li>
           <li>
             <h3 class="text-slate-500 font-semibold">Shipping</h3>
@@ -107,20 +106,20 @@
           </li>
           <li>
             <h3 class="text-slate-500 font-semibold">Gst (18%)</h3>
-            <h2 class="font-bold text-sm">$<%= parseFloat(subtotal* 18/100).toFixed(2)%></h2>
+            <h2 class="font-bold text-sm">₹<%= parseFloat(subtotal* 18/100).toFixed(2)%></h2>
           </li>
           <li>
             <h3 class="text-slate-500 font-semibold">Total</h3>
-            <h2 class="font-bold text-2xl">$<%=parseFloat(subtotal + subtotal* 18/100).toFixed(2)%></h2>
+            <h2 class="font-bold text-2xl">₹<span id="totalAmount"><%=parseFloat(subtotal + subtotal* 18/100).toFixed(2)%></span></h2>
           </li>
           <li>
-            <button class="font-semibold rounded">Proceed To Checkout</button>
+            <button id="checkOutRz" class="font-semibold rounded"><a href="">Proceed To Checkout</a></button>
           </li>
         </ul>
       </div>
     </div>
   </section>
-
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script type="text/javascript">
 
     $(document).ready(function(){
@@ -194,16 +193,63 @@
             alert("Minimum Quantity Reached")
         }
       })
-      
-      $("#lessQty").click(function(){
-          let minValue=0
-          let currentValue=parseInt($("#currentQty").text())
-          if(minValue<currentValue){
-              currentValue=currentValue-1
-              $("#currentQty").text(currentValue)
-          }else{
-              alert("Minimum Quantity Reached")
+      $("#removeCart").click(function(){
+        let cartId = $(this).data("cart-id");
+        $.ajax({
+          url:'/removecart',
+          method: "POST",
+          data:{
+            cartId:cartId,
+          },
+          success: function(data) {
+            console.log(data);
+            window.location.reload();
+          },
+            error: function(err) {
+            console.log(err);
           }
+        })
+      })
+      $("#checkOutRz").click(function(e){
+        e.preventDefault();
+        const cartItems = "<%= getCart.length > 0 ? getCart[0]._id : '' %>"; // Assuming getCart holds your cart data
+        if (!cartItems || cartItems.length === 0) {
+          alert("Your cart is empty. Please add items before checkout.");
+          return;
+        }
+        $.ajax({
+          url:'/checkout',
+          type: "POST",
+          data:{
+            amount:$("#totalAmount").text(),
+            cartId:"<%= getCart.length > 0 ? getCart[0]._id : '' %>"
+          },
+          success:function(res){
+            if(res.success){
+              var options = {
+                "key": ""+res.key_id+"",
+                "amount": ""+res.amount+"",
+                "currency": "INR",
+                "order_id": ""+res.order_id+"",
+                "handler": function (response){
+                  // alert("Payment Succeeded");
+                  window.open("/myorder","_self")
+                },
+                "theme": {
+                  "color": "#2300a3"
+                }
+              };
+              var razorpayObject = new Razorpay(options);
+              razorpayObject.on('payment.failed', function (response){
+                  alert("Payment Failed");
+              });
+              razorpayObject.open();
+            }
+            else{
+              alert(res.msg);
+            }
+          }
+        })
       })
     });
   </script>

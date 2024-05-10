@@ -16,15 +16,15 @@
                     <img src="img/banner-5.png" alt="" class=" rounded-lg">
                 </div>
                 <div class="desc-box p-3 flex gap-1 flex-col rounded-lg w-11/12 absolute shadow top-3/4 bg-white left-1/2 transform -translate-x-1/2">
-                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
+                    <a href="" class="text-slate-400 font-medium text-sm"><%=getProducts[0].productCategory.categoryName%></a>
+                    <a href="/product?id=<%=getProducts[0]._id%>" class="font-semibold mt-2 text-green-700"><%=getProducts[0].productName%></a>
                     <div class="rating-box flex gap-2">
                         <div class="stars">
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bx-star  text-orange-600' ></i>
                         </div>
                         <div class="rating">
                             <span>(4.0)</span>
@@ -32,8 +32,8 @@
                     </div>
                     <span>By <a href="">NestFood</a></span>
                     <div class="price-box justify-between flex gap-2 items-center">
-                        <h3 class="font-semibold text-lg">$28.85</h3>
-                        <h4 class="font-semibold line-through">$32.8</h4>
+                        <h3 class="font-semibold text-lg">₹<%=getProducts[0].productPrice-(getProducts[0].productPrice)*getProducts[0].productDiscount/100 %></h3>
+                        <h4 class="font-semibold line-through">₹<%=getProducts[0].productPrice%></h4>
                         <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
                     </div>
                 </div>
@@ -43,15 +43,15 @@
                     <img src="img/banner-6.png" alt="" class=" rounded-lg">
                 </div>
                 <div class="desc-box p-3 flex gap-1 flex-col rounded-lg w-11/12 absolute shadow top-3/4 bg-white left-1/2 transform -translate-x-1/2">
-                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
+                    <a href="" class="text-slate-400 font-medium text-sm"><%=getProducts[1].productCategory.categoryName%></a>
+                    <a href="/product?id=<%=getProducts[1]._id%>" class="font-semibold mt-2 text-green-700"><%=getProducts[1].productName%></a>
                     <div class="rating-box flex gap-2">
                         <div class="stars">
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bx-star  text-orange-600' ></i>
                         </div>
                         <div class="rating">
                             <span>(4.0)</span>
@@ -59,8 +59,8 @@
                     </div>
                     <span>By <a href="">NestFood</a></span>
                     <div class="price-box justify-between flex gap-2 items-center">
-                        <h3 class="font-semibold text-lg">$28.85</h3>
-                        <h4 class="font-semibold line-through">$32.8</h4>
+                        <h3 class="font-semibold text-lg">₹<%=getProducts[1].productPrice-(getProducts[1].productPrice)*getProducts[1].productDiscount/100 %></h3>
+                        <h4 class="font-semibold line-through">₹<%=getProducts[1].productPrice%></h4>
                         <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
                     </div>
                 </div>
@@ -70,15 +70,15 @@
                     <img src="img/banner-7.png" alt="" class=" rounded-lg">
                 </div>
                 <div class="desc-box p-3 flex gap-1 flex-col rounded-lg w-11/12 absolute shadow top-3/4 bg-white left-1/2 transform -translate-x-1/2">
-                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
+                    <a href="" class="text-slate-400 font-medium text-sm"><%=getProducts[2].productCategory.categoryName%></a>
+                    <a href="/product?id=<%=getProducts[2]._id%>" class="font-semibold mt-2 text-green-700"><%=getProducts[2].productName%></a>
                     <div class="rating-box flex gap-2">
                         <div class="stars">
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bx-star  text-orange-600' ></i>
                         </div>
                         <div class="rating">
                             <span>(4.0)</span>
@@ -86,8 +86,8 @@
                     </div>
                     <span>By <a href="">NestFood</a></span>
                     <div class="price-box justify-between flex gap-2 items-center">
-                        <h3 class="font-semibold text-lg">$28.85</h3>
-                        <h4 class="font-semibold line-through">$32.8</h4>
+                        <h3 class="font-semibold text-lg">₹<%=getProducts[2].productPrice-(getProducts[2].productPrice)*getProducts[2].productDiscount/100 %></h3>
+                        <h4 class="font-semibold line-through">₹<%=getProducts[2].productPrice%></h4>
                         <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
                     </div>
                 </div>
@@ -97,15 +97,15 @@
                     <img src="img/banner-8.png" alt="" class=" rounded-lg">
                 </div>
                 <div class="desc-box p-3 flex gap-1 flex-col rounded-lg w-11/12 absolute shadow top-3/4 bg-white left-1/2 transform -translate-x-1/2">
-                    <a href="" class="text-slate-400 font-medium text-sm">Snack</a>
-                    <a href="" class="font-medium mt-2">Seeds of Change Organic Quinoa, Brown, & Red Rice</a>
+                    <a href="" class="text-slate-400 font-medium text-sm"><%=getProducts[3].productCategory.categoryName%></a>
+                    <a href="/product?id=<%=getProducts[3]._id%>" class="font-semibold mt-2 text-green-700"><%=getProducts[3].productName%></a>
                     <div class="rating-box flex gap-2">
                         <div class="stars">
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
-                            <i class='bx bxs-star' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bxs-star text-orange-600' ></i>
+                            <i class='bx bx-star  text-orange-600' ></i>
                         </div>
                         <div class="rating">
                             <span>(4.0)</span>
@@ -113,8 +113,8 @@
                     </div>
                     <span>By <a href="">NestFood</a></span>
                     <div class="price-box justify-between flex gap-2 items-center">
-                        <h3 class="font-semibold text-lg">$28.85</h3>
-                        <h4 class="font-semibold line-through">$32.8</h4>
+                        <h3 class="font-semibold text-lg">₹<%=getProducts[3].productPrice-(getProducts[3].productPrice)*getProducts[3].productDiscount/100 %></h3>
+                        <h4 class="font-semibold line-through">₹<%=getProducts[3].productPrice%></h4>
                         <button class="rounded"><span>Add</span> <i class='bx bxs-cart-add text-xl' ></i></button>
                     </div>
                 </div>

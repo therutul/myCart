@@ -27,17 +27,17 @@
                     </div>
                     <div class="product-review mt-5">
                         <div class="rating-box text-xs">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star text-orange-600'></i>
+                            <i class='bx bxs-star text-orange-600'></i>
+                            <i class='bx bxs-star text-orange-600'></i>
+                            <i class='bx bxs-star text-orange-600'></i>
+                            <i class='bx bx-star text-orange-600'></i>
                             <span class="ps-2">(32 Reviews)</span>
                         </div>
                     </div>
                     <div class="product-price flex items-center gap-4 mt-5">
-                        <h2 class="text-5xl font-bold">$<%=productInfo.productPrice-(productInfo.productPrice)*productInfo.productDiscount/100 %></h2>
-                        <h3 class="text-2xl line-through font-semibold text-slate-500">$<%=productInfo.productPrice %></h3>
+                        <h2 class="text-5xl font-bold">₹<%=productInfo.productPrice-(productInfo.productPrice)*productInfo.productDiscount/100 %></h2>
+                        <h3 class="text-2xl line-through font-semibold text-slate-500">₹<%=productInfo.productPrice %></h3>
                     </div>
                     <div class="product-semi-detail mt-5">
                         <p class="text-slate-500 font-medium">
@@ -85,8 +85,13 @@
                                 </div>
                             </div>
                             <div class="add-to-cart h-full">
-                                <button type="button" id="addToCart" data-user-id="<%=user._id%>" class="hover h-full p-4 font-semibold rounded-md"><i class='bx bx-cart-alt' ></i> 
+                                <button type="button" id="addToCart" data-user-id="<%=user._id%>" class="hover h-full p-4 font-semibold rounded-md flex items-center gap-2">
+                                    <div class="animate-spin hidden w-4 h-4 border-[3px] border-current border-t-transparent text-white rounded-full " role="status" aria-label="loading">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <i class='carti bx bx-cart-alt' ></i> 
                                     Add to cart
+                                    
                                 </button>
                             </div>
                             <div class="add-wishlist">
@@ -118,7 +123,7 @@
                                 </td>
                                 <td class="py-1">
                                     <label>Type: </label>
-                                    <span><%=productInfo.productType%></span>
+                                    <span><%=productInfo.productType.type%></span>
                                 </td>
                             </tr>
                             <tr class="">
@@ -333,7 +338,7 @@
                         <div class="flex gap-3 items-center">
                             <img src="img/category-1.svg" alt="" class="w-7">
                             <a href="" class="text-sm font-medium">
-                                Milks & Dairies
+                                Vegetables
                             </a>
                         </div>
                         <p class="text-xs font-bold">
@@ -342,9 +347,9 @@
                     </li>
                     <li class="flex p-3 rounded-md justify-between items-center">
                         <div class="flex gap-3 items-center">
-                            <img src="img/category-1.svg" alt="" class="w-7">
+                            <img src="img/category-2.svg" alt="" class="w-7">
                             <a href="" class="text-sm font-medium">
-                                Milks & Dairies
+                                Fruits
                             </a>
                         </div>
                         <p class="text-xs font-bold">
@@ -358,17 +363,33 @@
                 <ul class="flex flex-col gap-5">
                     <li class="flex gap-4">
                         <div class="image-box w-1/3">
-                            <img src="img/thumbnail-3.jpg" class="rounded" alt="">
+                            <img src="img/thumbnail-1.jpg" class="rounded" alt="">
                         </div>
                         <div class="new-product-detail w-2/3 flex flex-col gap-1">
                             <a href="" class="font-bold">Chen Cardigan</a>
-                            <span class="text-sm font-semibold">$99.50</span>
+                            <span class="text-sm font-semibold">₹99.50</span>
                             <div class="rating-box text-xs">
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="image-box w-1/3">
+                            <img src="img/thumbnail-2.jpg" class="rounded" alt="">
+                        </div>
+                        <div class="new-product-detail w-2/3 flex flex-col gap-1">
+                            <a href="" class="font-bold">Chen Cardigan</a>
+                            <span class="text-sm font-semibold">₹99.50</span>
+                            <div class="rating-box text-xs">
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
                             </div>
                         </div>
                     </li>
@@ -378,29 +399,13 @@
                         </div>
                         <div class="new-product-detail w-2/3 flex flex-col gap-1">
                             <a href="" class="font-bold">Chen Cardigan</a>
-                            <span class="text-sm font-semibold">$99.50</span>
+                            <span class="text-sm font-semibold">₹99.50</span>
                             <div class="rating-box text-xs">
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="flex gap-4">
-                        <div class="image-box w-1/3">
-                            <img src="img/thumbnail-3.jpg" class="rounded" alt="">
-                        </div>
-                        <div class="new-product-detail w-2/3 flex flex-col gap-1">
-                            <a href="" class="font-bold">Chen Cardigan</a>
-                            <span class="text-sm font-semibold">$99.50</span>
-                            <div class="rating-box text-xs">
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
-                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
+                                <i class='bx bxs-star text-orange-600'></i>
                             </div>
                         </div>
                     </li>
@@ -415,14 +420,31 @@
             </div>
         </div>
     </section>
+    <footer class="my-4 flex justify-center items-center px-5">
+        <p class="text-center">© 2024, Nest - HTML Ecommerce Template </p>
+        <ul class="flex gap-3 ms-auto">
+            <li>
+                <a href="">Home</a>
+            </li>
+            <li>
+                <a href="">My Account</a>
+            </li>
+            <li>
+                <a href="">Tracking</a>
+            </li>
+            <li>
+                <a href="">Help</a>
+            </li>
+        </ul>
+    </footer>
     <script>
         $(document).ready(function(){
             let productDetailTab=$(".product-details-tab")
             let additionalDetailTab=$(".additional-details-tab")
             let reviewDetailTab=$(".review-details-tab")
-            productDetailTab.hide()
+            // productDetailTab.hide()
             additionalDetailTab.hide();
-            // reviewDetailTab.hide();
+            reviewDetailTab.hide();
             $("#productDetailBox").click(function(){
                 productDetailTab.show();
                 additionalDetailTab.hide();
@@ -463,6 +485,9 @@
             $("#addToCart").click(function() {
                 const currQty=$("#currentQty").text()
                 let userId = $(this).data("user-id");
+                $(".animate-spin").show()
+                $(".carti").hide()
+                
             $.ajax({
                 url: "/add-to-cart",
                 type: "POST",
@@ -473,6 +498,8 @@
                 },
                     success: function(data) {
                     console.log(data);
+                    $(".animate-spin").hide()
+                    $("#addToCart").html("<i class='bx bxs-check-square' ></i> Added to Cart")
                 },
                     error: function(err) {
                     console.log(err);

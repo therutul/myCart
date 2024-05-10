@@ -9,19 +9,19 @@
                     <span class="px-3 text-sm text-slate-600">|</span>
                 </li>
                 <li>
-                    <a href="" class="text-xs text-slate-600">About Us</a>
+                    <a href="" class="text-xs text-slate-600">My Account</a>
                 </li>
                 <li>
                     <span class="px-3 text-sm text-slate-600">|</span>
                 </li>
                 <li>
-                    <a href="" class="text-xs text-slate-600">About Us</a>
+                    <a href="" class="text-xs text-slate-600">Wish List</a>
                 </li>
                 <li>
                     <span class="px-3 text-sm text-slate-600">|</span>
                 </li>
                 <li>
-                    <a href="" class="text-xs text-slate-600">About Us</a>
+                    <a href="" class="text-xs text-slate-600">Order Tracking</a>
                 </li>
                 <li class="flex-1 text-center">
                     <span class="text-xs font-semibold text-slate-600">Trendy 25silver jewelry, save up 35% off today</span>
@@ -50,26 +50,20 @@
                 <img src="img/logo.svg" alt="" class="w-48">
             </div>
             <div class="search-bar w-1/3 rounded-md overflow-hidden">
-                <form action="" method="POST" class="flex gap-3 px-3">
-                    <input type="text" class="py-2 w-full text-sm" placeholder="Search for items...">
-                    <button class="text-xl"><i class='bx bx-search text-slate-600' ></i></button>
+                <form action="/search" method="POST" class="flex gap-3 px-3">
+                    <input autocomplete="off" name="query" type="text" class="py-2 w-full text-sm" placeholder="Search for items...">
+                    <button type="submit" class="text-xl"><i class='bx bx-search text-slate-600' ></i></button>
                 </form>
             </div>
             <ul class="flex gap-5 justify-center items-center ms-auto">
-                <li>
-                    <a href="" class="text-slate-600 flex gap-2 items-center relative">
-                        <span class="float-counter">0</span>
-                        <i class='text-xl bx bx-notification align-middle' ></i>
-                        <p>Compare</p>
-                    </a>
-                </li>
-                <li>
+                
+                <!-- <li>
                     <a href="" class="text-slate-600 flex gap-2 items-center relative">
                         <span class="float-counter">0</span>
                         <i class='text-xl bx bx-heart align-middle'></i>
                         <p>Wishlist</p>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="/cart" class="text-slate-600 flex gap-2 items-center relative">
                         <span id="cartCounter" class="float-counter">
@@ -80,7 +74,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/login" class="text-slate-600 flex gap-2 items-center relative">
+                    <a href="/myaccount" class="text-slate-600 flex gap-2 items-center relative">
                         <i class='text-xl bx bx-notification align-middle' ></i>
                         <p>My Account</p>
                     </a>
@@ -98,48 +92,28 @@
             </ul>
             <ul class="flex items-center ms-4 xl:ms-9 gap-4 xl:gap-8">
                 <li class="relative">
-                    <a href="" class=" font-semibold whitespace-nowrap">Home <i class='bx bxs-chevron-down align-middle' ></i></a>
-                    <div class="dropdown absolute -left-5 w-40 ps-5 py-3 flex flex-col rounded-md bg-white">
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                    </div>
+                    <a href="/" class=" font-semibold whitespace-nowrap">Home</a>
                 </li>
                 <li>
                     <a href="" class="font-semibold whitespace-nowrap">About</a>
                 </li>
                 <li class="relative">
                     <a href="" class="font-semibold whitespace-nowrap">Popular <i class='bx bxs-chevron-down align-middle' ></i></a>
-                    <div class="dropdown absolute -left-5 w-40 ps-5 py-3 flex flex-col rounded-md bg-white">
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
+                    <div class="dropdown absolute -left-5 w-40 ps-5 py-3 flex flex-col gap-3 rounded-md bg-white">
+                        <a href="./query?id=Vegetables">Vegetables</a>
+                        <a href="./query?id=Fruits">Fruits</a>
+                        <a href="./query?id=Seeds">Seeds</a>
                     </div>
                 </li>
                 <li class="relative">
                     <a href="" class="font-semibold whitespace-nowrap">Latest <i class='bx bxs-chevron-down align-middle' ></i></a>
-                    <div class="dropdown absolute -left-5 w-40 ps-5 py-3 flex flex-col rounded-md bg-white">
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
+                    <div class="dropdown absolute gap-3 -left-5 w-40 ps-5 py-3 flex flex-col rounded-md bg-white">
+                        <a href="./query?id=Vegetables">Vegetables</a>
+                        <a href="./query?id=Fruits">Fruits</a>
+                        <a href="./query?id=Seeds">Seeds</a>
                     </div>
                 </li>
-                <li class="relative">
-                    <a href="" class="font-semibold whitespace-nowrap">Deals <i class='bx bxs-chevron-down align-middle' ></i></a>
-                    <div class="dropdown absolute -left-5 w-40 ps-5 py-3 flex flex-col rounded-md bg-white">
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                        <a href="">Home 1</a>
-                    </div>
-                </li>
+                
                 <li>
                     <a href="" class="font-semibold whitespace-nowrap">Contact </a>
                 </li>

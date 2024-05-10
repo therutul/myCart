@@ -2,9 +2,11 @@
 const db=require('../configs/database')
 const jwt = require('jsonwebtoken')
 const nodemailer = require('nodemailer')
-
-const {AdminAuth,ProductCategory,Cart,Product,Rating,User}=require('../models/adminSchema')
+const Razorpay = require('razorpay');
+const bcrypt = require('bcrypt');
+const {AdminAuth,ProductCategory,Cart,Product,Rating,User,ProductType}=require('../models/adminSchema')
 const request = require('request');
+const razorInstance = new Razorpay({ key_id: process.env.key_id, key_secret: process.env.key_secret });
 const index=async(req,res)=>{
     const getProducts=await Product.find({}).populate('productCategory')
     res.render('index',{getProducts})
@@ -112,7 +114,8 @@ const product=async(req,res)=>{
     if(userId){
         const user=await User.findById(userId)
         const productId=req.query.id
-        const productInfo=await Product.findById(productId).populate('productCategory')
+        const productInfo=await Product.findById(productId).populate('productCategory').populate('productType')
+        console.log(productInfo)
         res.render('product',{productInfo,user})
     }
     else{
@@ -123,6 +126,20 @@ const product=async(req,res)=>{
     }
 
 
+}
+const catQuery=async(req,res)=>{
+    const query = req.query.id
+    const getProducts = await Product.find()
+    .populate({
+        path: 'productCategory',
+        match: { categoryName: query } // Filter the populated category
+    })
+    .exec();
+    const filteredProducts = getProducts.filter(product => product.productCategory !== null);
+
+    // console.log(filteredProducts);
+    console.log(getProducts)
+    res.render('filterproducts',{getProducts:filteredProducts,query})
 }
 const addCart=async(req,res)=>{
     const productId=req.query.id
@@ -193,7 +210,7 @@ const customGet=async(req,res)=>{
 const cartGet=async(req,res)=>{
     // const userId=req.cookies.logged
     const userId=req.cookies.logged
-    const getCart=await Cart.find({userId:userId}).populate('productId')
+    const getCart=await Cart.find({userId:userId,isPaid:false}).populate('productId')
     if(req.body.chngQty){
         const cartId=req.body.cartId
         const quantity=req.body.chngQty
@@ -226,6 +243,11 @@ const editCart=async(req,res)=>{
         res.json("success")
     }
 }
+const removeCart=async(req,res)=>{
+    const cartId=req.body.cartId
+    await Cart.findByIdAndDelete(cartId)
+    res.json("success")
+}
 const productInfo=async(req, res) =>{
     // const userId=req.cookies.logged
     const productId=req.query.id
@@ -243,12 +265,38 @@ const myAccount=async(req,res)=>{
         res.redirect('/login')
     }
 }
-const myOrder=async(req,res)=>{
+const myProfile=async(req,res)=>{
     const userId=req.cookies.logged
     if(userId){
         const user=await User.findById(userId)
         console.log(user)
-        res.render('myorder',{user})
+        res.render('myprofile',{user})
+    }
+    else{
+        res.redirect('/login')
+    }
+}
+const editProfile=async(req,res)=>{
+    const userId=req.body.uId
+    // const password=req.body.uPass
+    // const hashedPassword = await bcrypt.hash(password, 10);
+    await User.findByIdAndUpdate(userId,{
+        userName:req.body.uName,
+        userEmail:req.body.uEmail,
+        // userPassword:hashedPassword,
+        userFullName:req.body.fName,
+        userAddress:req.body.uAddr,
+        userPhone:req.body.uMob,
+    })
+    res.redirect('/myprofile')
+}
+const myOrder=async(req,res)=>{
+    const userId=req.cookies.logged
+    if(userId){
+        const user=await User.findById(userId)
+        const getCart=await Cart.find({userId:userId,isPaid:true}).populate('productId')
+        console.log(user)
+        res.render('myorder',{user,getCart})
     }
     else{
         res.redirect('/login')
@@ -284,7 +332,14 @@ const loginPost=async(req,res)=>{
     //     res.send('success'); // Redirect to the homepage or any other desired page after logout
     // });
     res.cookie("logged",req.user._id.toString())
+    const user=await User.findById(req.user._id.toString())
+    console.log(user.userFullName)
+    if(user.userFullName==null){
+        req.flash('error', 'Please Update Your Profile');
+        return res.redirect('/myprofile')
+    }
     res.redirect('/')
+    
 
     
 }
@@ -293,10 +348,12 @@ const registerGet=async(req, res) =>{
 }
 const registerPost=async(req, res) =>{
     try{
+        const password=req.body.userPassword
+        const hashedPassword = await bcrypt.hash(password, 10);
         const newUser=new User({
             userName:req.body.userName,
             userEmail:req.body.userEmail,
-            userPassword:req.body.userPassword
+            userPassword:hashedPassword
         })
         await newUser.save()
         await sendemail(newUser.userEmail, newUser._id);
@@ -316,6 +373,10 @@ const verifyToken=async(req,res)=>{
     const token=req.params.token
     res.redirect(`/login?verify=${token}`)
 }
+const logout=async(req,res)=>{
+    res.clearCookie('logged');
+    res.redirect('/login'); // Redirect to the homepage or any other desired page after logout
+}
 
 const checkSession= async (req, res) => {
     // Check if the session user exists
@@ -326,9 +387,64 @@ const checkSession= async (req, res) => {
     // res.send(token)
     // res.send(encodeURIComponent("6635225fa0f47cce4beda2a1"))
 };
+const checkout=async(req,res)=>{
 
+    const userId=req.cookies.logged
+    const getCart=await Cart.find({userId:userId,isPaid:false}).populate('productId')
+    res.render('checkout',{getCart,userId})
+}
+// const checkoutSuccess=async(req,res)=>{
+//     const userId=req.cookies.logged
+//     const getCart=await Cart.findByIdAndUpdate(req.body.cartId,{
+//         isPaid:true
+//     })
+//     res.redirect("/myorder")
+// }
+const checkoutSuccess=async(req,res)=>{
+    const userId=req.cookies.logged
+    
+
+    const amount=req.body.amount*100
+    const options={
+        amount: amount,
+        currency: 'INR',
+        receipt: 'rutull009@yandex.com',
+        payment_capture: 1
+    }
+    const order = await razorInstance.orders.create(options);
+    // 5267 3181 8797 5449
+    // Order creation successful, update cart
+    const updatedCart = await Cart.findByIdAndUpdate(req.body.cartId, {
+      isPaid: true
+    });
+
+    if (!updatedCart) {
+      // Handle error if cart update fails (e.g., cart not found)
+      console.error("Error updating cart: Cart not found");
+      return res.status(400).send({ success: false, msg: 'Cart update failed!' });
+    }
+
+    res.status(200).send({
+      success: true,
+      msg: 'Order Created',
+      order_id: order.id,
+      amount,
+      key_id: process.env.key_id,
+    });
+    // res.redirect("/myorder")
+}
 const mongooseQueryGet=(req,res)=>{
     res.render('mongoose')
+}
+const searchQuery=async(req,res)=>{
+    const query = req.body.query;
+    
+    const getProducts = await Product.find({
+        productName: { $regex: new RegExp(query, 'i') } // Case-insensitive search for productName
+    });
+    res.render('filterproducts',{getProducts,query})
+    // res.json(getProducts);
+
 }
 
 const mongooseQueryPost= async(req,res)=>{
@@ -367,5 +483,13 @@ module.exports={
     myOrder,
     mongooseQueryGet,
     mongooseQueryPost,
+    removeCart,
+    logout,
+    checkout,
+    checkoutSuccess,
+    catQuery,
+    searchQuery,
+    myProfile,
+    editProfile
     
 }

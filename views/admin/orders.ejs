@@ -43,22 +43,34 @@
                           <tr class="border-gray-300 border-b ">
                             <th scope="col" class="px-6 py-3">Id</th>
                             <th scope="col" class="px-6 py-3">Status</th>
-                            <th scope="col" class="px-6 py-3">Date</th>
-                            <th scope="col" class="px-6 py-3">Products</th>
+                            <th scope="col" class="px-6 py-3">Qty</th>
                             <th scope="col" class="px-6 py-3">Customer</th>
                             <th scope="col" class="px-6 py-3">Amount</th>
                           </tr>
                         </thead>
                         <tbody class="divide-y ">
-                          <tr class="border-gray-300 border-b ">
-                            <td class="py-3 px-6 text-left"><a href="./orders?id=dsf5d4f6" class="text-indigo-600 font-medium">ORD.1522</a></td>
-                            <td class="py-3 px-6 text-left"><span class="bg-indigo-200 px-2 py-1 text-indigo-700 text-sm font-medium rounded-md inline-block whitespace-nowrap text-center">Completed</span></td>
-                            <td class="py-3 px-6 text-left">24/12/2024</td>
-                            <td class="py-3 px-6 text-left">4</td>
-                            <td class="py-3 px-6 text-left"><a href="./customers?id=dsf5d4f6" class="text-indigo-600 font-medium">John Doe</a></td></td>
-                            <td class="py-3 px-6 text-left">$45</td>
-                          </tr>
-                          <tr class="border-gray-300 border-b ">
+                          <%getOrders.forEach((order,index)=>{%>
+                            <tr class="border-gray-300 border-b ">
+                              <td class="py-3 px-6 text-left"><a href="./orders?id=dsf5d4f6" class="text-indigo-600 font-medium">ORD.<%=index+1%></a></td>
+                              <%if (order.isPaid==true){%>
+                                <td class="py-3 px-6 text-left"><span class="bg-indigo-200 px-2 py-1 text-indigo-700 text-sm font-medium rounded-md inline-block whitespace-nowrap text-center">Completed</span></td>
+                                <%}else{%>
+                                  <td class="py-3 px-6 text-left"><span class="bg-yellow-200 px-2 py-1 text-yellow-700 text-sm font-medium rounded-md inline-block whitespace-nowrap text-center">Pending</span></td>
+                              <%}%>
+
+                              <td class="py-3 px-6 text-left">
+                                <%=order.quantity%>
+                              </td>
+                              <td class="py-3 px-6 text-left">
+                                <%=order.userId.userFullName%>
+                              </td>
+                              <td class="py-3 px-6 text-left">
+                                ₹<%= ((parseFloat(order.productId.productPrice - (order.productId.productPrice * order.productId.productDiscount / 100)) * parseFloat(order.quantity)) + (0.18 * (parseFloat(order.productId.productPrice - (order.productId.productPrice * order.productId.productDiscount / 100)) * parseFloat(order.quantity)))).toFixed(2) %>
+                              </td>
+                            </tr>
+                          <%})%>
+                          
+                          <!-- <tr class="border-gray-300 border-b ">
                             <td class="py-3 px-6 text-left"><a href="./orders?id=dsf5d4f6" class="text-indigo-600 font-medium">ORD.1521</a></td>
                             <td class="py-3 px-6 text-left"><span class="bg-red-200 px-2 py-1 text-red-700 text-sm font-medium rounded-md inline-block whitespace-nowrap text-center">Cancelled</span></td>
                             <td class="py-3 px-6 text-left">24/12/2024</td>
@@ -73,7 +85,7 @@
                             <td class="py-3 px-6 text-left">4</td>
                             <td class="py-3 px-6 text-left"><a href="./customers?id=dsf5d4f6" class="text-indigo-600 font-medium">John Doe</a></td></td>
                             <td class="py-3 px-6 text-left">$45</td>
-                          </tr>
+                          </tr> -->
                         </tbody>
                       </table>
                     </div>

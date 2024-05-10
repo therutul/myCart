@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%-include('head')-%>
+</head>
+<body>
+  <%-include('header')%>
+  <section class="container mx-auto" id="checkout">
+    <% if (success_messages && success_messages.length > 0) { %>
+      <div class="bg-teal-200 mt-5 flex items-center w-1/2 text-gray-900 rounded-lg p-4 alert" role="alert">
+          <span> <%= success_messages[0] %></span>
+      </div>
+    <% } %>
+  
+    <% if (error_messages && error_messages.length > 0) { %>
+      <div class="bg-red-200 font-semibold w-1/2 mt-5 flex items-center text-gray-900 rounded-lg p-4 alert" role="alert">
+        <span> <%= error_messages[0] %></span>
+      </div>
+    <% } %>
+    <h1 id="editText" class="text-4xl my-4 font-bold">My Profile</h1>
+    <form action="/editprofile" method="POST">
+      <label class="text-gray-600">User Name</label>
+      <input type="hidden" name="uId" value="<%=user._id%>" autocomplete="off">
+      <input autocomplete="off" disabled name="uName" type="text" class=" border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-1/2 p-2 px-3 disabled:opacity-50 disabled:pointer-events-none font-semibold" value="<%=user.userName%>" /><br>
+      <label class="text-gray-600">Full Name</label>
+      <input autocomplete="off" disabled name="fName" type="text" class=" border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-1/2 p-2 px-3 disabled:opacity-50 disabled:pointer-events-none font-semibold" value="<%=user.userFullName%>" /><br>
+      <label class="text-gray-600">Email Address</label>
+      <input autocomplete="off" disabled name="uEmail" type="text" class=" border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-1/2 p-2 px-3 disabled:opacity-50 disabled:pointer-events-none font-semibold" value="<%=user.userEmail%>" /><br>
+      <label class="text-gray-600">Password</label>
+      <input autocomplete="off" disabled name="uPass" type="password" class=" border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-1/2 p-2 px-3 disabled:opacity-50 disabled:pointer-events-none font-semibold" placeholder="********" /><br>
+      <label class="text-gray-600">Mobile No.</label>
+      <input autocomplete="off" disabled name="uMob" type="text" class=" border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-1/2 p-2 px-3 disabled:opacity-50 disabled:pointer-events-none font-semibold" value="<%=user.userPhone%>" /><br>
+      <label class="text-gray-600">Delivery Address</label>
+      <textarea autocomplete="off" disabled name="uAddr" type="text" class=" border border-gray-300 text-gray-900 rounded focus:ring-indigo-600 focus:border-indigo-600 block w-1/2 p-2 px-3 disabled:opacity-50 disabled:pointer-events-none font-semibold" value="<%=user.userAddress%>"><%=user.userAddress%></textarea><br>
+      <button id="editBtn" class="bg-green-400 px-5 py-3 text-white font-semibold rounded-md">Edit Profile</button>
+      <button id="saveBtn" type="submit" class="hidden bg-green-400 px-5 py-3 text-white font-semibold rounded-md">Save Profile</button>
+    </form>
+  </section>
+
+  <footer class="my-4 flex justify-center items-center px-5">
+    <p class="text-center">© 2024, Nest - HTML Ecommerce Template </p>
+    <ul class="flex gap-3 ms-auto">
+        <li>
+            <a href="">Home</a>
+        </li>
+        <li>
+            <a href="">My Account</a>
+        </li>
+        <li>
+            <a href="">Tracking</a>
+        </li>
+        <li>
+            <a href="">Help</a>
+        </li>
+    </ul>
+</footer>
+<script>
+  $(document).ready(function(){
+    $('#editBtn').click(function(){
+      event.preventDefault();
+      $('#editText').text('Edit Profile');
+      $('#editBtn').hide()
+      $('#saveBtn').show()
+      $("input[name='uName']").prop("disabled", false)
+      $("input[name='fName']").prop("disabled", false)
+      $("input[name='uEmail']").prop("disabled", false)
+      $("input[name='uPass']").prop("disabled", false)
+      $("input[name='uMob']").prop("disabled", false)
+      $("textarea[name='uAddr']").prop("disabled", false)
+      
+      $("input[name='uName']").addClass("bg-blue-200")
+      $("input[name='fName']").addClass("bg-blue-200")
+      $("input[name='uEmail']").addClass("bg-blue-200")
+      $("input[name='uPass']").addClass("bg-blue-200")
+      $("input[name='uMob']").addClass("bg-blue-200")
+      $("textarea[name='uAddr']").addClass("bg-blue-200")
+    })
+  })
+</script>
+</body>
+</html>

@@ -29,7 +29,12 @@ const productCategory = mongoose.Schema({
     },
     categoryStatus:{
         type:String,
-    }
+    },
+    // productType: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'ProducType',
+    //     required: true
+    // }],
 })
 const productSubCategory=mongoose.Schema({
     subCategoryName:{
@@ -101,6 +106,11 @@ const productSchema = new mongoose.Schema({
         ref: 'ProductCategory',
         required: true
     },
+    productType: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ProductType',
+        required: true
+    },
     productPrice: {
         type: Number,
         required: true
@@ -113,7 +123,6 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    productType: String,
     productMfg: Date,
     productExpiry: Date,
     productTags: [String],
@@ -121,6 +130,18 @@ const productSchema = new mongoose.Schema({
         type: [ratingSchema] // Array of Rating subdocuments
     }
 });
+const productTypeSchema=mongoose.Schema({
+    type:{
+        type:String,
+        required:true
+    },
+    productCategory: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ProductCategory',
+        required: true
+    },
+
+})
 const cartSchema=mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -136,8 +157,13 @@ const cartSchema=mongoose.Schema({
         type: Number,
         required: true,
         min: 1
+    },
+    isPaid:{
+        type: Boolean,
+        default: false,
     }
 })
+
 const userSchema=mongoose.Schema({
     userName:{
         type:String,
@@ -153,6 +179,9 @@ const userSchema=mongoose.Schema({
     userPassword:{
         type:String,
         required:true
+    },
+    userFullName:{
+        type:String,
     },
     userAddress:{
         type:String
@@ -175,6 +204,7 @@ const Product=mongoose.model("Product",productSchema)
 const Rating=mongoose.model("Rating",ratingSchema)
 const User=mongoose.model("User",userSchema)
 const Cart=mongoose.model("Cart",cartSchema)
+const ProductType=mongoose.model("ProductType",productTypeSchema)
 
 module.exports={
     AdminAuth,
@@ -182,6 +212,7 @@ module.exports={
     Product,
     Rating,
     User,
-    Cart
+    Cart,
+    ProductType
 
 }

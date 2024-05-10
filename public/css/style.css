@@ -659,6 +659,9 @@ header .header-bottom li:hover .dropdown {
 #checkout h1 {
   color: #35374B;
 }
+#checkout h4 {
+  color: #3BB77E;
+}
 #checkout .top-box .login-box a {
   color: #3BB77E;
 }
